@@ -8,6 +8,6 @@
         <TextView android:textSize="20px" android:textColor="#000000" android:text="Phần mềm nhắn tin SMS"  android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>    	
     </LinearLayout>
     <LinearLayout  android:layout_height="fill_parent" android:id="@+id/linearLayout1" android:layout_width="fill_parent">
-        <ListView android:divider="@drawable/divider" android:dividerHeight="5px" android:layout_height="fill_parent" android:layout_width="fill_parent" android:id="@+id/menulist"></ListView>
+        <ListView android:cacheColorHint="#00000000" android:divider="@drawable/divider" android:dividerHeight="5px" android:layout_height="fill_parent" android:layout_width="fill_parent" android:id="@+id/menulist"></ListView>
     </LinearLayout>
 </LinearLayout>
