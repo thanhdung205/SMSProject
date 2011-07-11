@@ -14,6 +14,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+		<activity android:name=".MainGroup"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CreateGroup"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN2" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Group_Detail"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN3" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

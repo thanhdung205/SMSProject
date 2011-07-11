@@ -37,7 +37,6 @@ public class ArrayListMenu {
 		arraylist.add(menu4);
 		arraylist.add(menu5);
 		arraylist.add(menu6);
-		
 	}
 	
 

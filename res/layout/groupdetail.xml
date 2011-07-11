@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:orientation="vertical"
+  android:background="@drawable/background"
+  >
+    <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+        <TextView android:text="Chi tiết nhóm"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="20px"></TextView>
+    	
+    </LinearLayout>
+    <FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Group_ListDetail" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>
+	       <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	       		<ImageView android:layout_marginRight="20px" android:layout_height="wrap_content" android:src="@drawable/savechange" android:layout_width="wrap_content" android:id="@+id/Group_SaveChange"></ImageView>
+	       		<ImageView android:layout_height="wrap_content" android:src="@drawable/deletegroup" android:layout_width="wrap_content" android:id="@+id/Group_Delete"></ImageView>		
+	       </LinearLayout>
+	       
+   	</FrameLayout>
+    
+    
+</LinearLayout>
