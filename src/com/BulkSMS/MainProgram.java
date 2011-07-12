@@ -30,14 +30,27 @@ public class MainProgram extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				MenuItemList listselect= (MenuItemList) arg0.getItemAtPosition(arg2);
-				if(listselect.titleItem.contains("Nh�m")){
+				if(listselect.titleItem.contains("Nhóm")){
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN1"));
 
 				}
-				else if(listselect.titleItem.contains("Tho�t")){
+				else if(listselect.titleItem.contains("Thoát")){
 					System.exit(0);
 				}
-				
+				else if(listselect.titleItem.contains("Gửi"))
+				{
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN4"));
+				}
+				else if(listselect.titleItem.contains("mẫu")){
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
+				}
+				else if(listselect.titleItem.contains("sử")){
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN8"));
+				}
+				else if(listselect.titleItem.contains("lịch")){
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN10"));
+				}
+				else{}
 				
 			}});
     }

@@ -35,5 +35,61 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+    
+        <activity android:name=".Send_Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN4" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity android:name=".Send_ContactGroup"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN5" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".Template_Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN6" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".Template_Create"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN7" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+          <activity android:name=".History_Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN8" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+          <activity android:name=".History_Detail"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN9" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+         <activity android:name=".Scheduler"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN10" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
     </application>
 </manifest>

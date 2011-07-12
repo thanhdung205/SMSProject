@@ -7,7 +7,8 @@
   android:orientation="vertical">
    
     
-    <LinearLayout android:layout_width="fill_parent" android:gravity="center" android:layout_height="50px" android:background="@drawable/maintitle" >
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:gravity="center" android:layout_height="50px" android:background="@drawable/maintitle" >
+    	<ImageView android:layout_marginLeft="5px" android:src="@drawable/back" android:layout_width="45px" android:layout_height="45px"></ImageView>
     	<TextView android:text="Nhóm" android:textStyle="bold"  android:textColor="#FFFFFF" android:textSize="20px" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     </LinearLayout>  	
     <LinearLayout android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content" android:layout_marginTop="10px">

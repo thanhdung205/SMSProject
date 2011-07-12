@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ArrayListContact {
 	ArrayList<Struct_ListViewContact> list;
+	
 	public ArrayListContact(){
 		list = new ArrayList<Struct_ListViewContact>();
 	}
@@ -21,9 +22,11 @@ public class ArrayListContact {
 			list.add(item);
 		}
 	}
+	
 	public ArrayList<Struct_ListViewContact> GetListContact()
 	{
 		return list;
 	}
+	
 
 }

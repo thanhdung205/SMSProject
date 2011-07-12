@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@drawable/background"
+  android:orientation="vertical">
+  <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+		<TextView android:text="Tạo mẫu mới" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+	</LinearLayout>
+   <LinearLayout android:layout_marginTop="10px" android:layout_width="fill_parent" android:layout_height="wrap_content">
+       <EditText android:maxWidth="100px"  android:text=""  android:singleLine="false"  android:hint="Nội dung"  android:layout_width="fill_parent" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:paddingLeft="10px" android:paddingTop="5px" android:paddingRight="10px" android:paddingBottom="5px"  android:background="@drawable/edittextback" android:id="@+id/Template_TextContent" android:layout_height="wrap_content"></EditText>
+   </LinearLayout>
+   
+    <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+				       <LinearLayout android:id="@+id/Template_btCreateContent"  android:layout_marginLeft="15px" android:gravity="center" android:layout_marginRight="15px" android:background="@drawable/tap"  android:layout_weight="50" android:layout_height="50px" android:layout_width="fill_parent">
+				       		<TextView android:text="Tạo mẫu" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView> 		
+				       </LinearLayout>
+				       <LinearLayout android:id="@+id/Template_btCancel" android:gravity="center" android:background="@drawable/tap" android:layout_marginLeft="15px" android:layout_marginRight="15px"  android:layout_weight="50" android:layout_width="fill_parent" android:layout_height="50px">
+				       		<TextView android:text="Hủy" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
+				       </LinearLayout>
+	</LinearLayout>
+</LinearLayout>
