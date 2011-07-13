@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class MainGroup extends Activity {
@@ -39,6 +40,16 @@ public class MainGroup extends Activity {
 		 ListView ls = (ListView) findViewById(R.id.Grouplist);
 		 ImageView bt = (ImageView) findViewById(R.id.bt_Creategroup);
 		 ls.setAdapter(adapter);
+		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				
+			
+				finish();
+			}
+			 
+		 });
 		 bt.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
@@ -56,5 +67,10 @@ public class MainGroup extends Activity {
 				
 			}});
 		 }
+
+	private OnClickListener OnClickListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

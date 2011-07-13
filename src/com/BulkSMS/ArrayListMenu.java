@@ -23,7 +23,7 @@ public class ArrayListMenu {
 		menu3.SetTitle("Sắp lịch nhắn tin");
 		MenuItemList menu4 = new MenuItemList();
 		menu4.SetImage("drawable/onlinestorage");
-		menu4.SetTitle("Lưu trữ trực tuyến");
+		menu4.SetTitle("Các mẫu trực tuyến");
 		MenuItemList menu5 = new MenuItemList();
 		menu5.SetImage("drawable/history");
 		menu5.SetTitle("Lịch sử tin nhắn");

@@ -52,6 +52,16 @@ public class Send_ContactGroup extends Activity {
 				
 			}			
 		});
+		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				
+			
+				finish();
+			}
+			 
+		 });
 	}
 	
 

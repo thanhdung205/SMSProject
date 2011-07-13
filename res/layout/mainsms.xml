@@ -6,7 +6,7 @@
   android:background="@drawable/background"
   android:orientation="vertical">
   
-  	<LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+  	<LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
 		<TextView android:text="Gửi tin nhắn" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
 		<LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" >

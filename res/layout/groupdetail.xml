@@ -5,7 +5,7 @@
   android:layout_height="fill_parent" android:orientation="vertical"
   android:background="@drawable/background"
   >
-    <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+    <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
         <TextView android:text="Chi tiết nhóm"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="20px"></TextView>
     	
     </LinearLayout>

@@ -7,25 +7,32 @@
   android:orientation="vertical">
   
   
-    
+        <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+		<TextView android:gravity="center" android:text="Cài đặt tin nhắn" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+	</LinearLayout>
+	
     	<LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" >
 		  	<FrameLayout android:layout_marginTop="4px" android:orientation="horizontal" android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:layout_height="wrap_content">
 				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<EditText android:hint="Số điện thoại" android:paddingLeft="10px" android:paddingRight="10px" android:singleLine="true" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" android:id="@+id/Send_TextNumberphone" ></EditText>
+						<EditText android:hint="Số điện thoại" android:paddingLeft="10px" android:paddingRight="10px" android:singleLine="true" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" android:id="@+id/Scheduler_TextNumberphone" ></EditText>
 					</LinearLayout>
 					
 					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<ImageView android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/add" android:id="@+id/Send_btAdd"></ImageView>
+						<ImageView android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/add" android:id="@+id/Scheduler_btAdd"></ImageView>
 					</LinearLayout>
 		  	</FrameLayout>
 	</LinearLayout>
-	          <LinearLayout android:layout_marginBottom="5px" android:layout_marginTop="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="wrap_content">
-	           		<TimePicker android:id="@+id/timePicker1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TimePicker>
+	
+	          <LinearLayout android:id="@+id/Scheduler_btSubSettime" android:layout_marginTop="25px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/tap" android:layout_marginLeft="30px" android:layout_marginRight="30px">
+	          		<TextView  android:text="Thiết lập thời gian" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px"></TextView>
 	           </LinearLayout>
-	 <LinearLayout android:layout_marginBottom="5px" android:layout_marginTop="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="wrap_content">
-	          		 <DatePicker android:id="@+id/datePicker1" android:layout_width="wrap_content" android:layout_height="wrap_content"></DatePicker>
+	           <LinearLayout  android:id="@+id/Scheduler_btSelectTemplate" android:layout_marginTop="25px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/tap" android:layout_marginLeft="30px" android:layout_marginRight="30px">
+	          		<TextView android:text="Chọn mẫu có sẵn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px"></TextView>
 	           </LinearLayout>
-	 
+	             <LinearLayout  android:id="@+id/Scheduler_btSelectOnlineTemplate" android:layout_marginTop="25px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/tap" android:layout_marginLeft="30px" android:layout_marginRight="30px">
+	          		<TextView android:text="Chọn mẫu trực tuyến" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px"></TextView>
+	           </LinearLayout>
+	           
 	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	       		
 	     <LinearLayout android:layout_marginBottom="5px" android:layout_marginTop="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
@@ -33,11 +40,11 @@
 	       			<FrameLayout android:layout_marginTop="4px" android:orientation="horizontal"  android:layout_width="fill_parent" android:layout_height="wrap_content">
 				  	 
 				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<EditText android:paddingLeft="10px" android:paddingTop="5px" android:paddingBottom="5px" android:paddingRight="5px"  android:hint="Nội dung tin nhắn" android:maxHeight="50px" android:singleLine="false" android:id="@+id/Send_TextContent" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" ></EditText>
+						<EditText android:paddingLeft="10px" android:paddingTop="5px" android:paddingBottom="5px" android:paddingRight="5px"  android:hint="Nội dung tin nhắn" android:maxHeight="50px" android:singleLine="false" android:id="@+id/Scheduler_TextContent" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" ></EditText>
 					</LinearLayout>
 					
 					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<ImageView android:id="@+id/Send_btSend" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/send"></ImageView>
+						<ImageView android:id="@+id/Scheduler_btSend" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/send"></ImageView>
 					</LinearLayout>
 		  	</FrameLayout>
 	       </LinearLayout>

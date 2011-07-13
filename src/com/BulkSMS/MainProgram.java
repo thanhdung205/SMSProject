@@ -41,15 +41,20 @@ public class MainProgram extends Activity {
 				{
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN4"));
 				}
-				else if(listselect.titleItem.contains("mẫu")){
+				else if(listselect.titleItem.contains("SMS")){
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
 				}
 				else if(listselect.titleItem.contains("sử")){
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN8"));
 				}
-				else if(listselect.titleItem.contains("lịch")){
+				
+				else if(listselect.titleItem.contains("Sắp")){
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN10"));
 				}
+				else if(listselect.titleItem.contains("tuyến")){
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN13"));
+				}
+				
 				else{}
 				
 			}});

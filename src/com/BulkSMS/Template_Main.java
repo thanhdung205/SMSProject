@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,18 +33,34 @@ public class Template_Main extends Activity {
 		 ds.add("Template 8");
 		 ds.add("Template 9");
 		 ds.add("Template 10");
-		 
-		
+
 		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ds);
 		 
 		 ListView ls = (ListView) findViewById(R.id.Template_ListTemplate);
 
 		 ls.setAdapter(adapter);
+		 ls.setOnItemClickListener(new OnItemClickListener(){
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				startActivity(new Intent("com.BulkSMS.CLEARSCREEN15"));
+				
+			}});
 		 btCreate.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN7"));
 			}	 
+		 });
+		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				
+			
+				finish();
+			}
+			 
 		 });
 
 	}

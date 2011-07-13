@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +35,16 @@ public class History_Detail extends Activity {
 		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ds);
 		 ListView ls = (ListView) findViewById(R.id.History_ListContact);
 		 ls.setAdapter(adapter);
+		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				
+			
+				finish();
+			}
+			 
+		 });
 	}
 	
 }

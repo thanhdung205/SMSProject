@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class Send_Main extends Activity {
@@ -44,6 +45,16 @@ public class Send_Main extends Activity {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN5"));
 				
 			}});
+		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				
+			
+				finish();
+			}
+			 
+		 });
 
 	}
 	

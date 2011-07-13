@@ -2,5 +2,20 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  android:background="@drawable/background"
+  android:orientation="vertical">
+  
+    <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
+		<TextView android:gravity="center" android:text="Danh sách tin tự động nhắn" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+	</LinearLayout>
+	
+	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Scheduler_ListSMSAuto" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>
+	       <LinearLayout android:layout_marginBottom="10px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	       		<LinearLayout android:id="@+id/Scheduler_btAddMain" android:gravity="center" android:background="@drawable/tap"  android:layout_width="fill_parent" android:layout_height="50px" android:layout_marginLeft="20px" android:layout_marginRight="20px">
+	       		<TextView android:text="Thêm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px"></TextView>
+	       		</LinearLayout>
+	       </LinearLayout>
+   	</FrameLayout>
 </LinearLayout>

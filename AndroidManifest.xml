@@ -91,5 +91,43 @@
             </intent-filter>
         </activity>
         
+        <activity android:name=".Scheduler_Send"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN11" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".Scheduler_SetTime"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN12" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                <activity android:name=".Storing_Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN13" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+                <activity android:name=".Storing_Template"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN14" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+                <activity android:name=".Storing_Detail"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN15" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
