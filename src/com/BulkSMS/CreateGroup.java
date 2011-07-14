@@ -1,22 +1,20 @@
 package com.BulkSMS;
 
-
-
 import android.app.Activity;
-import android.content.Intent;
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class CreateGroup extends Activity{
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -26,36 +24,59 @@ public class CreateGroup extends Activity{
 		 ListView ls = (ListView) findViewById(R.id.ContactList);
 		 ImageView bt = (ImageView) findViewById(R.id.bt_CreateGroup1);
 		 final EditText Text_GName =  (EditText) findViewById(R.id.text_GroupName);
-		 final ArrayListContact array = new ArrayListContact();
-		 array.SetListContact();
-	     AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,array.GetListContact());
+		 ArrayListContact contact = GetContact();
+	     AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,contact.GetListContact());
 	     ls.setAdapter(ap);
 	     ls.setOnItemClickListener(new OnItemClickListener(){
-
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				//Struct_ListViewContact listselect= (Struct_ListViewContact) arg0.getItemAtPosition(arg2);
-				if(array.GetListContact().get(arg2).GetIsChecked())
-				{
-					Text_GName.setText("True");
-				}
-				else
-				{
-					Text_GName.setText("False");
-				}
+				
 				
 			}});
-	     LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
-		 btExit.setOnClickListener(new OnClickListener(){
+		 final Database_Command com = new Database_Command(this);
+		 bt.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
-				
-			
+				int row = com.GetListAuto("tbl_Group1");
+				com.Insert_tblGroup("" + row + "", Text_GName.getText().toString());
 				finish();
 			}
-			 
 		 });
+	     LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 btExit.setOnClickListener(new OnClickListener(){
+			public void onClick(View arg0) {
+				finish();
+			} 
+		 });
+}
 	
+	public ArrayListContact GetContact()
+	{
+		ContentResolver cr = getContentResolver();
+		 Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
+	ArrayListContact contact = new ArrayListContact();
+		if (cur.getCount() > 0) {
+			          while (cur.moveToNext()) {
+			        	  StructContact con = new StructContact();
+			               String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+			               
+			                if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+			                   			
+			                    Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
+			                                           ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
+			                                           new String[]{id}, null);
+			                    while (pCur.moveToNext()) {
+			                    	con.Name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+			                    	con.NumberPhone = pCur.getString(
+			                                 pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+			                    	contact.SetListContact(con);
+			                    }
+			                    pCur.close();
+			                }
+			          }
+	}
+	    return contact;
+	}
+}
 
-}
-}
+

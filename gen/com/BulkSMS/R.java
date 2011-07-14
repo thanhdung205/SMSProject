@@ -37,7 +37,7 @@ public final class R {
     }
     public static final class id {
         public static final int ContactList=0x7f050004;
-        public static final int Group_Delete=0x7f05000e;
+        public static final int Group_Deletegroup=0x7f05000e;
         public static final int Group_ListDetail=0x7f05000c;
         public static final int Group_SaveChange=0x7f05000d;
         public static final int Grouplist=0x7f050015;

@@ -1,7 +1,7 @@
 package com.BulkSMS;
 
 import android.app.Activity;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,16 +23,16 @@ public class Send_ContactGroup extends Activity {
 		final ListView list = (ListView) findViewById(R.id.Send_GroupContact);
 		
 		ArrayListContact array = new ArrayListContact();
-		array.SetListContact();
-	    final AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,array.GetListContact());
-		list.setAdapter(ap);
+		//array.SetListContact();
+	    //final AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,array.GetListContact());
+		//list.setAdapter(ap);
 		
 	   // array.SetListGroup();
 	    //final AdapterListviewContact ap1 = new AdapterListviewContact(this,R.layout.customcontactlistview,array.GetListGroup());
 		
 		btContact.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				list.setAdapter(ap);
+			//	list.setAdapter(ap);
 			    
 			}
 			

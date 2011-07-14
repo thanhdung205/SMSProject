@@ -17,35 +17,34 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class MainGroup extends Activity {
-
+	ArrayListGroup listgroup = new ArrayListGroup(this);
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		ListView ls = (ListView) findViewById(R.id.Grouplist);
+		 Binding(ls);
+	}
+	public void Binding(ListView ls){
+		
+		 listgroup.SetListGroup();
+		 ArrayList<String> listname = listgroup.GetListGroupName();
+		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listname);
+		 ls.setAdapter(adapter);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		 setContentView(R.layout.maingroup);
-		 ArrayList<String> ds = new ArrayList<String>();
-		 ds.add("Group 1");
-		 ds.add("Group 2");
-		 ds.add("Group 3");
-		 ds.add("Group 4");
-		 ds.add("Group 6");
-		 ds.add("Group 7");
-		 ds.add("Group 8");
-		 ds.add("Group 9");
-		 ds.add("Group 10");
-		 
-		
-		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ds);
-		 
+		 setContentView(R.layout.maingroup);	 
 		 ListView ls = (ListView) findViewById(R.id.Grouplist);
+		 Binding(ls);
 		 ImageView bt = (ImageView) findViewById(R.id.bt_Creategroup);
-		 ls.setAdapter(adapter);
+		 
 		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
-
+			 
 			public void onClick(View arg0) {
-				
-			
 				finish();
 			}
 			 
@@ -63,8 +62,8 @@ public class MainGroup extends Activity {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				All_Var.Group_ID = listgroup.GetListGroup().get(arg2).GetID();
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN3"));
-				
 			}});
 		 }
 

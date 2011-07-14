@@ -8,19 +8,14 @@ public class ArrayListContact {
 	public ArrayListContact(){
 		list = new ArrayList<Struct_ListViewContact>();
 	}
-	public void  SetListContact()
+	public void  SetListContact(StructContact contact)
 	{
-		for(int i = 0 ; i < 10 ; i++)
-		{
-			StructContact contact  = new StructContact();
-			contact.SetName("Name " + i);
-			contact.SetNumberPhone("090000000");
 			Struct_ListViewContact item = new Struct_ListViewContact();
 			item.Contact = contact;
 		
 			item.SetIsChecked(false);
 			list.add(item);
-		}
+		
 	}
 	
 	public ArrayList<Struct_ListViewContact> GetListContact()
