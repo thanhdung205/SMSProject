@@ -1,9 +1,9 @@
 package com.BulkSMS;
 
 public class StructTemplate {
-	String ID;
+	int ID;
 	String Content;
-	public String GetID()
+	public int GetID()
 	{
 		return ID;
 	}
@@ -11,7 +11,7 @@ public class StructTemplate {
 	{
 		return Content;
 	}
-	public void SetID(String id)
+	public void SetID(int id)
 	{
 		ID = id;
 	}

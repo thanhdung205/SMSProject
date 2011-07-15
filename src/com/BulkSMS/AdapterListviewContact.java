@@ -54,8 +54,7 @@ public class AdapterListviewContact extends ArrayAdapter<Struct_ListViewContact>
 	}
 	@Override
 	public Struct_ListViewContact getItem(int position) {
-		// TODO Auto-generated method stub
-		
+
 		return list.get(position);
 	}
 

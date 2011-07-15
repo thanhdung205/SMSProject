@@ -9,13 +9,15 @@
      <LinearLayout  android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
 		<TextView android:text="Chi tiết" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
+		
+	       				
 	    <FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	       <TextView android:text="Nội dung" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="80px" android:layout_marginTop="10px" android:textColor="#FFFFFF" android:textStyle="bold" android:paddingLeft="5px" android:paddingRight="5px" ></TextView>
+	       <TextView android:id="@+id/Storing_Content" android:text="Nội dung" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="80px" android:layout_marginTop="10px" android:textColor="#FFFFFF" android:textStyle="bold" android:paddingLeft="5px" android:paddingRight="5px" ></TextView>
 	       
 	       <LinearLayout  android:orientation="vertical" android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	       			<LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10px">
 	       			
-	       				<TextView android:id="@+id/Storing_Content" android:text="Sử dụng mẫu cho" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+	       				<TextView  android:text="Sử dụng mẫu cho" android:textColor="#FFFFFF" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 	       			</LinearLayout>				
 	       			<LinearLayout android:gravity="center" android:layout_marginTop="15px"  android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10px">
 	       				<LinearLayout android:id="@+id/Storing_btSend" android:gravity="center"  android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_weight="50" android:layout_height="50px" android:layout_marginLeft="15px" android:layout_marginRight="15px">

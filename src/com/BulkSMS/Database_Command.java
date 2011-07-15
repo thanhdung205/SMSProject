@@ -15,11 +15,21 @@ public class Database_Command {
 	public void Insert_tblGroup(String ID,String Name){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.GetTableGroup() + " values('" + ID +"','" + Name +"');");
 	}
-	public void Insert_tblContact(String ID,String ID_Group,String Name,String Numberphone){
-		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.GetTableContact() + " values('" + ID +"','" + ID_Group + "','" + Name + "','" + Numberphone +"');");
+	public Database_Createtable GetDatabaseCreate(){
+		return vari;
 	}
-	public void Insert_tblTemplate(String ID,String Content){
-		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.GetTableTemplate() + " values('" + ID +"','" + Content +"');");
+	public void Insert_tblContact(int ID_Group,String Name,String Numberphone){
+		 ContentValues args = new ContentValues();
+		 args.put("ID_Group", ID_Group);
+		 args.put("Name", Name);
+		 args.put("NumberPhone", Numberphone);
+		vari.GetDatabase().GetDatabase().insert(vari.GetTableContact(),null, args);
+	}
+	public void Insert_tblTemplate(int ID,String Content){
+		 ContentValues args = new ContentValues();
+		 args.put("ID", ID);
+		 args.put("Content", Content);
+		vari.GetDatabase().GetDatabase().insert(vari.GetTableTemplate(), null, args);
 	}
 	public void Insert_tblAuto(String Name,int  Row){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.TableAuto + " values('" + Name +"','" + Row +"');");
@@ -33,7 +43,10 @@ public class Database_Command {
 		vari.GetDatabase().GetDatabase().delete(vari.TableContact,"ID_Group=?" ,args);
 	}
 	public void Update_tblAuto(String Name,int Row){
-		vari.GetDatabase().GetDatabase().execSQL("update " + vari.GetTableAuto() + " set Row=" + Row + " where TableName='" + Name +"';");
+		ContentValues args = new ContentValues();
+		 args.put("TableName", Name);
+		 args.put("Row", Row);
+		vari.GetDatabase().GetDatabase().insert(vari.TableAuto,null ,args);
 	}
 	public Cursor GetEntryGroup()
 	{
@@ -71,59 +84,73 @@ public class Database_Command {
 		
 		return list;
 	}
-	public ArrayList<StructTemplate> GetListContact(String Tan)
+	public ArrayList<StructTemplate> GetListTemplate()
 	{
 		
-		Cursor cs = GetEntryContact();
+		Cursor cs = GetEntryTemplate();
+		
 		ArrayList<StructTemplate> list =new ArrayList<StructTemplate>();
 		cs.moveToFirst();
 		while (cs.isAfterLast() == false) {
-			StructTemplate tp = new StructTemplate();
-			tp.SetID(cs.getString(0));
-			tp.SetContent(cs.getString(1));
-			 list.add(tp);
+			 StructTemplate tem = new StructTemplate();
+			 tem.SetID(cs.getInt(0));
+			 tem.SetContent(cs.getString(1));
+			 list.add(tem);
+			 cs.moveToNext();
+		}
+		return list;
+	}
+	public ArrayList<StructContact_Group> GetListContact()
+	{
+		
+		Cursor cs = GetEntryContact();
+		ArrayList<StructContact_Group> list =new ArrayList<StructContact_Group>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructContact_Group tp = new StructContact_Group();
+			StructContact con = new StructContact();
+			
+			tp.SetIDGroup(Integer.parseInt(cs.getString(1)));
+			con.SetName(cs.getString(2));
+			con.SetNumberPhone(cs.getString(3));
+			tp.SetConcact(con); 
+			list.add(tp);
 			 cs.moveToNext();
 		}
 		
 		return list;
 	}
-	public ArrayList<String> GetListTemplate()
-	{
-		
-		Cursor cs = GetEntryTemplate();
-		ArrayList<String> list =new ArrayList<String>();
-		cs.moveToFirst();
-		do{
-			 list.add(cs.getString(1));
-		
-				}while(cs.moveToNext());
-		
-		return list;
-	}
-	public int GetListAuto(String TableName)
+	
+	public int AutoIncreasing(String TableName)
 	{
 		Cursor cs = GetEntryAuto();
 		int count = 0;
-		if(cs.getCount() == 0)
-		{
-			Insert_tblAuto(vari.GetTableGroup(),0);
-		}
+		boolean flag = false;
 		cs.moveToFirst();
 		while (cs.isAfterLast() == false){
-			 
+			
 			if(cs.getString(0).contains(TableName)){
 
-					 
+				flag =true;
 				 count = cs.getInt(1);
 				 
 				 count++;
 				 ContentValues args = new ContentValues();
 				 args.put("Row", count);
-				 vari.GetDatabase().GetDatabase().update(vari.TableAuto,args, "TableName='" + vari.GetTableGroup() + "'",null);
-				 cs.moveToNext();
+				 vari.GetDatabase().GetDatabase().update(vari.TableAuto,args, "TableName='" + TableName + "'",null);
+				 break;
 			 }
+			cs.moveToNext();
+		}
+		if(flag == false)
+		{
+			count++;
+			Insert_tblAuto(TableName,count);
 		}
 		return count;
 	}
 
 }
+
+
+

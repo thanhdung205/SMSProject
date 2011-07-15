@@ -12,12 +12,16 @@ public class ArrayListContact {
 	{
 			Struct_ListViewContact item = new Struct_ListViewContact();
 			item.Contact = contact;
-		
 			item.SetIsChecked(false);
 			list.add(item);
-		
 	}
-	
+	public void  SetListContact1(StructContact contact,boolean ischeck)
+	{
+			Struct_ListViewContact item = new Struct_ListViewContact();
+			item.Contact = contact;
+			item.SetIsChecked(ischeck);
+			list.add(item);
+	}
 	public ArrayList<Struct_ListViewContact> GetListContact()
 	{
 		return list;

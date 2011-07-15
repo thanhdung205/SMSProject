@@ -1,5 +1,7 @@
 package com.BulkSMS;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.database.Cursor;
@@ -24,7 +26,7 @@ public class CreateGroup extends Activity{
 		 ListView ls = (ListView) findViewById(R.id.ContactList);
 		 ImageView bt = (ImageView) findViewById(R.id.bt_CreateGroup1);
 		 final EditText Text_GName =  (EditText) findViewById(R.id.text_GroupName);
-		 ArrayListContact contact = GetContact();
+		 final ArrayListContact contact = GetContact();
 	     AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,contact.GetListContact());
 	     ls.setAdapter(ap);
 	     ls.setOnItemClickListener(new OnItemClickListener(){
@@ -34,11 +36,13 @@ public class CreateGroup extends Activity{
 				
 			}});
 		 final Database_Command com = new Database_Command(this);
+		 
 		 bt.setOnClickListener(new OnClickListener(){
-
+			 
 			public void onClick(View arg0) {
-				int row = com.GetListAuto("tbl_Group1");
+				int row = com.AutoIncreasing(com.GetDatabaseCreate().GetTableGroup());
 				com.Insert_tblGroup("" + row + "", Text_GName.getText().toString());
+				GetSelectItem(contact,com,row);
 				finish();
 			}
 		 });
@@ -53,14 +57,14 @@ public class CreateGroup extends Activity{
 	public ArrayListContact GetContact()
 	{
 		ContentResolver cr = getContentResolver();
-		 Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
-	ArrayListContact contact = new ArrayListContact();
+		Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
+		ArrayListContact contact = new ArrayListContact();
 		if (cur.getCount() > 0) {
 			          while (cur.moveToNext()) {
 			        	  StructContact con = new StructContact();
-			               String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+			              String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
 			               
-			                if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+			              if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
 			                   			
 			                    Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
 			                                           ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
@@ -76,6 +80,21 @@ public class CreateGroup extends Activity{
 			          }
 	}
 	    return contact;
+	}
+	public void GetSelectItem(ArrayListContact contact,Database_Command com, int ID_Group)
+	{
+		for(int i = 0; i < contact.GetListContact().size(); i++ )
+		{
+			if(contact.GetListContact().get(i).GetIsChecked())
+			{
+				StructContact con = new StructContact();
+				con.Name= contact.GetListContact().get(i).GetContact().GetName();
+				con.NumberPhone = contact.GetListContact().get(i).GetContact().GetNumberPhone();
+				com.Insert_tblContact(ID_Group, con.GetName(),con.GetNumberPhone());
+				
+			}
+		}
+		
 	}
 }
 

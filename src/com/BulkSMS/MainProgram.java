@@ -19,7 +19,7 @@ public class MainProgram extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        CreateData();
+        
         ArrayListMenu array = new ArrayListMenu();
         array.GetMenu();
         MenuItemAdapter ap = new MenuItemAdapter(this,R.layout.mainlist,array.arraylist);
@@ -60,8 +60,5 @@ public class MainProgram extends Activity {
 				
 			}});
     }
-    public void CreateData()
-    {
-    	
-    }
+
 }
