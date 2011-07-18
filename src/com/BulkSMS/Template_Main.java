@@ -22,6 +22,7 @@ public class Template_Main extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.maintemplate);
 		
 		LinearLayout btCreate = (LinearLayout) findViewById(R.id.Template_btCreate);
@@ -34,12 +35,14 @@ public class Template_Main extends Activity {
 					long arg3) {
 				All_Var.Text_Content =  GetAllTemplate(db).get(arg2);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN15"));
-				
+				finish();
 			}});
 		 btCreate.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN7"));
+				
+					
 			}	 
 		 });
 		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
@@ -88,6 +91,13 @@ public class Template_Main extends Activity {
 	{
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,GetTemplate(db));
 		 ls.setAdapter(adapter);
+	}
+	public void Detroy(){
+		if(All_Var.flagTemplateSend == 1)
+		{
+			All_Var.flagTemplateSend = 0;
+			this.finish();
+		}
 	}
 
 }

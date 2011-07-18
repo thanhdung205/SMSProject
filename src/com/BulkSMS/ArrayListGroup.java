@@ -21,6 +21,7 @@ public class ArrayListGroup {
 	{
 		return listgroup;
 	}
+	
 	public ArrayList<String> GetListGroupName(){
 		ArrayList<String> listname = new ArrayList<String>();
 		for(int i = 0;i<listgroup.size();i++)

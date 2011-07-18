@@ -9,6 +9,7 @@ public class Database_Createtable {
 	String TableContact ="tbl_Contact1";
 	String TableTemplate="tbl_Template1";
 	String TableAuto="tbl_Auto1";
+	String TableHistory="tbl_History1";
 	Database data;
 	public Database_Createtable(Context con){
 		data = new Database(con);
@@ -30,6 +31,9 @@ public class Database_Createtable {
 	{
 		return data;
 	}
+	public String GetHistory(){
+		return TableHistory;
+	}
 	public String GetTableGroup()
 	{
 		return TableGroup;
@@ -47,8 +51,7 @@ public class Database_Createtable {
 		return TableTemplate;
 	}
 	public void CreateTable_tblGroup()
-	{
-		
+	{		
 		data.GetDatabase().execSQL("create table " + TableGroup + " ( ID integer primary key, Name text);");
 	}
 	public void CreateTable_tbl_Contact()
@@ -64,5 +67,9 @@ public class Database_Createtable {
 		
 		data.GetDatabase().execSQL("create table " + TableAuto + " ( TableName text, Row integer);");
 		
+	}
+	public void CreateTable_tblHistory()
+	{		
+		data.GetDatabase().execSQL("create table " + TableHistory + " ( ID integer primary key,ID_Contact text,DateTime text,Content text, Name text);");
 	}
 }

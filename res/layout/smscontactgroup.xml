@@ -13,8 +13,8 @@
 			 <LinearLayout android:id="@+id/Send_tabContact" android:gravity="center" android:layout_height="50px" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
 				 <TextView android:text="Số liên lạc" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
 			</LinearLayout>
-			 <LinearLayout android:id="@+id/Send_tabGroup" android:gravity="center" android:layout_height="50px" android:background="@drawable/tap" android:layout_weight="50" android:layout_width="fill_parent">
-			     <TextView android:text="Nhóm" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
+			 <LinearLayout android:id="@+id/Send_tabC" android:gravity="center" android:layout_height="50px" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
+				 <TextView android:text="Nhóm" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
 			</LinearLayout>
 	</LinearLayout>
 	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">

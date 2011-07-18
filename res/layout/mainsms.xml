@@ -20,8 +20,16 @@
 					</LinearLayout>
 		  	</FrameLayout>
 	</LinearLayout>
+	<LinearLayout android:layout_marginTop="10px"  android:orientation="vertical"  android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+	       		<LinearLayout android:gravity="center" android:layout_marginTop="5px" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50px" android:layout_marginRight="30px"  android:layout_marginLeft="30px" android:id="@+id/SMS_SelectAvailableTemplate">
+						<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px" android:text="Chọn mẫu có sẵn" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+					</LinearLayout>
+					 <LinearLayout android:gravity="center" android:layout_marginTop="5px" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50px" android:layout_marginRight="30px"  android:layout_marginLeft="30px" android:id="@+id/SMS_SelectOnlineTemplate">
+						<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px" android:text="Chọn mẫu trưc tuyến" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+					</LinearLayout>
+	  </LinearLayout>
 	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	      <ListView android:id="@+id/Send_ListTemplate" android:divider="@drawable/divider" android:cacheColorHint="#00000000"  android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>   
+	        
 	       <LinearLayout android:layout_marginBottom="5px" android:layout_marginTop="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	       			<FrameLayout android:layout_marginTop="4px" android:orientation="horizontal"  android:layout_width="fill_parent" android:layout_height="wrap_content">
 				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
