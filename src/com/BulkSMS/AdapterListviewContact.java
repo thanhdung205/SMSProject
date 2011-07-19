@@ -3,15 +3,15 @@ package com.BulkSMS;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+
 import android.view.View;
-import android.view.View.OnClickListener;
+
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 public class AdapterListviewContact extends ArrayAdapter<Struct_ListViewContact> {

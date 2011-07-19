@@ -1,6 +1,6 @@
 package com.BulkSMS;
 
-import java.util.ArrayList;
+
 
 import android.app.Activity;
 import android.content.ContentResolver;

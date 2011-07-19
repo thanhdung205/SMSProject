@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+   <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent"  android:layout_height="50px">
+        <LinearLayout  android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" >
+    		<ImageView android:src="@drawable/contact" android:layout_width="40px" android:layout_height="40px"></ImageView>    	
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical" android:layout_marginLeft="10px" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" >
+    		<TextView android:textStyle="bold" android:textColor="#FFFFFF" android:text="TextView" android:id="@+id/History_ContactName" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>
+    		<TextView android:layout_marginTop="5px" android:textStyle="bold" android:textColor="#FFFFFF" android:text="TextView" android:id="@+id/History_ContactNumberPhone" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>    	
+        </LinearLayout>
+    	
+    </LinearLayout>
+</LinearLayout>

@@ -55,6 +55,9 @@ public class MainProgram extends Activity {
 				else if(listselect.titleItem.contains("tuyến")){
 					startActivity(new Intent("com.BulkSMS.CLEARSCREEN13"));
 				}
+				else if(listselect.titleItem.contains("Cấu hình")){
+					startActivity(new Intent("com.BulkSMS.CLEARSCREEN16"));
+				}
 				
 				else{}
 				

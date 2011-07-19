@@ -31,9 +31,43 @@ public class Database_Command {
 		 args.put("Content", Content);
 		vari.GetDatabase().GetDatabase().insert(vari.GetTableTemplate(), null, args);
 	}
+	public void Insert_tblReplace(String Str){
+		 ContentValues args = new ContentValues();
+		 args.put("RepChar", Str);
+		 vari.GetDatabase().GetDatabase().insert(vari.GetTableReplace(), null, args);
+	}
 	public void Insert_tblAuto(String Name,int  Row){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.TableAuto + " values('" + Name +"','" + Row +"');");
 	}
+	public void Insert_tblAutoSend(String DateTime,String Content){
+		ContentValues args = new ContentValues();
+	
+		args.put("DatetimeSend", DateTime);
+		args.put("Content", Content);
+		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend(), null, args);
+	}
+	public void Insert_tblAutoSend_Contact(int IDAuto,String Name,String NumberPhone){
+		ContentValues args = new ContentValues();
+		 args.put("ID_AutoSend", IDAuto);
+		 args.put("Name", Name);
+		 args.put("NumberPhone", NumberPhone);
+		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend_Contact(), null, args);
+	}
+	public void Insert_tblHistory(String DateTime,String Content){
+		ContentValues args = new ContentValues();
+		//args.put("ID", 2);
+		args.put("DateTime", DateTime);
+		args.put("Content", Content);
+		vari.GetDatabase().GetDatabase().insert(vari.GetHistory(), null, args);
+	}
+	public void Insert_tblHistory_Contact(int IDAuto,String Name,String NumberPhone){
+		ContentValues args = new ContentValues();
+		 args.put("ID_History", IDAuto);
+		 args.put("Name", Name);
+		 args.put("NumberPhone", NumberPhone);
+		vari.GetDatabase().GetDatabase().insert(vari.GetHistory_Contact(), null, args);
+	}
+
 	public void Delete_tblGroup(int ID){
 		String[] args = {"" + ID + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.GetTableGroup(),"ID=?" ,args);
@@ -42,11 +76,21 @@ public class Database_Command {
 		String[] args = {"" + ID + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.TableContact,"ID_Group=?" ,args);
 	}
+	public void Delete_tblReplace(String Str){
+		String[] args = {"" + Str + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetTableReplace(),"RepChar=?" ,args);
+	}
 	public void Update_tblAuto(String Name,int Row){
 		ContentValues args = new ContentValues();
 		 args.put("TableName", Name);
 		 args.put("Row", Row);
 		vari.GetDatabase().GetDatabase().insert(vari.TableAuto,null ,args);
+	}
+	public void Update_tblReplace(String Str){
+		ContentValues args = new ContentValues();
+		 args.put("RepChar", Str);
+		 String[] args1 = {"" + Str + ""};
+		 vari.GetDatabase().GetDatabase().update(vari.GetTableReplace(), args, "RepChar=?",args1);
 	}
 	public Cursor GetEntryGroup()
 	{
@@ -66,6 +110,21 @@ public class Database_Command {
 	public Cursor GetEntryAuto()
 	{
 		return vari.GetDatabase().GetDatabase().query(vari.GetTableAuto(), new String[] {"TableName", "Row"}, 
+                null, null, null, null, null);
+	}
+	public Cursor GetEntryHistory()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetHistory(), new String[] {"ID", "DateTime","Content"}, 
+                null, null, null, null, null);
+	}
+	public Cursor GetEntryHistoryContact()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetHistory_Contact(), new String[] {"ID", "ID_History","Name","NumberPhone"}, 
+                null, null, null, null, null);
+	}
+	public Cursor GetEntryReplace()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetTableReplace(), new String[] {"RepChar"}, 
                 null, null, null, null, null);
 	}
 	public ArrayList<StructGroup> GetListGroup()
@@ -120,6 +179,67 @@ public class Database_Command {
 		
 		return list;
 	}
+	public ArrayList<StructHistory> GetListHistory()
+	{
+		
+		Cursor cs = GetEntryHistory();
+		ArrayList<StructHistory> list =new ArrayList<StructHistory>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructHistory tp = new StructHistory();
+			tp.SetID(cs.getInt(0));
+			tp.SetDateTime(cs.getString(1));
+			tp.SetContent(cs.getString(2));
+			
+			list.add(tp);
+			cs.moveToNext();
+		}
+		
+		return list;
+	}
+	
+	
+	public ArrayList<StructHistoryContact> GetListHistoryContact()
+	{
+		
+		Cursor cs = GetEntryHistoryContact();
+		ArrayList<StructHistoryContact> list =new ArrayList<StructHistoryContact>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructHistoryContact tp = new StructHistoryContact();
+			tp.SetID(Integer.parseInt(cs.getString(0)));
+			tp.SetIDHistory(Integer.parseInt(cs.getString(1)));
+			tp.SetName(cs.getString(2));
+			tp.SetNumberPhone(cs.getString(3));
+			list.add(tp);
+			cs.moveToNext();
+		}
+		return list;
+	}
+	public String GetReplace()
+	{
+		String cha ="";
+		Cursor cs = GetEntryReplace();
+		try{
+		cs.moveToFirst();
+		cha = cs.getString(0);
+		}catch(Exception e){
+			Insert_tblReplace("##");
+			cs.moveToFirst();
+			cha = cs.getString(0);
+		}
+		return cha;
+	}
+	public int GetRowNumberHistoryContact(){
+		
+		Cursor cs = GetEntryHistory();
+		cs.moveToLast();
+		return cs.getInt(0);
+		
+		
+		
+	}
+	
 	
 	public int AutoIncreasing(String TableName)
 	{

@@ -28,8 +28,12 @@ public class ArrayListMenu {
 		menu5.SetImage("drawable/history");
 		menu5.SetTitle("Lịch sử tin nhắn");
 		MenuItemList menu6 = new MenuItemList();
-		menu6.SetImage("drawable/exit");
-		menu6.SetTitle("Thoát");
+		menu6.SetImage("drawable/setting");
+		menu6.SetTitle("Cấu hình");
+		MenuItemList menu7 = new MenuItemList();
+		menu7.SetImage("drawable/exit");
+		menu7.SetTitle("Thoát");
+		
 		arraylist.add(menu);
 		arraylist.add(menu1);
 		arraylist.add(menu2);
@@ -37,6 +41,7 @@ public class ArrayListMenu {
 		arraylist.add(menu4);
 		arraylist.add(menu5);
 		arraylist.add(menu6);
+		arraylist.add(menu7);
 	}
 	
 

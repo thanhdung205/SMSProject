@@ -136,5 +136,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+          <activity android:name=".Setting_Main"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN16" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity android:name=".Setting_Replace"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN17" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

@@ -47,7 +47,7 @@ public class Send_ContactGroup extends Activity {
 		btOK.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
-				All_Var.listnumber = new ArrayList<String>();
+				All_Var.listnumber = new ArrayList<StructContact>();
 				GetNumber();
 				finish();
 		}});
@@ -77,7 +77,10 @@ public class Send_ContactGroup extends Activity {
 			for(int i = 0 ; i < listcontact.size(); i++){
 				if(listcontact.get(i).GetIsChecked())
 				{
-					All_Var.listnumber.add(listcontact.get(i).GetContact().GetNumberPhone());
+					StructContact con = new StructContact();
+					con.SetName(listcontact.get(i).GetContact().GetName());
+					con.SetNumberPhone(listcontact.get(i).GetContact().GetNumberPhone());
+					All_Var.listnumber.add(con);
 				}
 			}
 		}
@@ -138,7 +141,10 @@ public class Send_ContactGroup extends Activity {
 		ArrayList<StructContact_Group> cg = com.GetListContact();
 		for(int i = 0 ; i < cg.size(); i++){
 			if(cg.get(i).ID_Group == ID_Group){
-				 All_Var.listnumber.add(cg.get(i).GetConcact().GetNumberPhone());
+				StructContact con = new StructContact();
+				con.SetName(cg.get(i).GetConcact().GetName());
+				con.SetNumberPhone(cg.get(i).GetConcact().GetNumberPhone());
+				 All_Var.listnumber.add(con);
 			}
 		}
 	}
