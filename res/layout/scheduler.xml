@@ -44,7 +44,7 @@
 					</LinearLayout>
 					
 					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<ImageView android:id="@+id/Scheduler_btSend" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/send"></ImageView>
+						<ImageView android:id="@+id/Scheduler_btSend12" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/send"></ImageView>
 					</LinearLayout>
 		  	</FrameLayout>
 	       </LinearLayout>

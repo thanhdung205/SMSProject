@@ -4,8 +4,10 @@ package com.BulkSMS;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,21 +17,45 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CreateGroup extends Activity{
+	 ArrayListContact contact;
+	 ListView list;
+	 TextView text1;
+	 public void SetDataListView()
+	 {
+		 	contact = GetContact();
+		    AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,contact.GetListContact());
+		    list.setAdapter(ap);
+		    text1.setVisibility(View.INVISIBLE);
+	 }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.creategroup);
+		final Handler handle =new  Handler(); 
+		final ListView ls = (ListView) findViewById(R.id.ContactList);
+		ImageView bt = (ImageView) findViewById(R.id.bt_CreateGroup1);
+		list = ls;
+		TextView text = (TextView) findViewById(R.id.Group_Loading);
+		text1=text;
+		text1.setVisibility(View.VISIBLE);
+		final EditText Text_GName =  (EditText) findViewById(R.id.text_GroupName);
 		
-		 ListView ls = (ListView) findViewById(R.id.ContactList);
-		 ImageView bt = (ImageView) findViewById(R.id.bt_CreateGroup1);
-		 final EditText Text_GName =  (EditText) findViewById(R.id.text_GroupName);
-		 final ArrayListContact contact = GetContact();
-	     AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview,contact.GetListContact());
-	     ls.setAdapter(ap);
-	     ls.setOnItemClickListener(new OnItemClickListener(){
+		
+		final Runnable posts = new Runnable(){
+				public void run() {
+					SetDataListView();
+				}
+		     };
+		Thread the = new  Thread(new Runnable() {
+			public void run() {
+				handle.post(posts);
+			}});
+		the.start();
+	   	     ls.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				

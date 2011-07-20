@@ -95,10 +95,10 @@ public class Database_Createtable {
 	}
 	public void CreateTable_tblAutoSend()
 	{		
-		//data.GetDatabase().execSQL("create table if not exists " + TableAutoSend + " ( ID integer primary key AUTOINCREMENT,DatetimeSend text,Content text);");
+		data.GetDatabase().execSQL("create table if not exists " + TableAutoSend + " ( ID integer primary key AUTOINCREMENT,DatetimeSend text,Content text);");
 	}
 	public void CreateTable_tblAutoSend_Contact()
 	{		
-		//data.GetDatabase().execSQL("create table if not exists " + TableAutoSend_Contact + " ( ID integer primary key AUTOINCREMENT,ID_Send references tbl_AutoSend(ID),Name text,NumberPhone text);");
+		data.GetDatabase().execSQL("create table if not exists " + TableAutoSend_Contact + " ( ID integer primary key AUTOINCREMENT,ID_Send integer references tbl_AutoSend(ID),Name text,NumberPhone text);");
 	}
 }

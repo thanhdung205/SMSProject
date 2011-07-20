@@ -19,7 +19,8 @@
     <LinearLayout android:layout_marginTop="10px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
     	<TextView android:layout_marginLeft="5px" android:textStyle="bold"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Danh sách số điện thoại" android:textColor="#FFFFFF" android:textSize="15px" ></TextView>
     </LinearLayout>
-  <FrameLayout android:layout_marginTop="8px" android:layout_marginBottom="10px"  android:layout_width="fill_parent" android:layout_height="fill_parent">  
+  <FrameLayout android:layout_marginTop="8px" android:layout_marginBottom="10px"  android:layout_width="fill_parent" android:layout_height="fill_parent">
+  	  	<TextView android:visibility="invisible" android:id="@+id/Group_Loading" android:layout_marginLeft="5px" android:textStyle="bold"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Đang tải ..." android:textColor="#FFFFFF" android:textSize="15px" ></TextView>
      <ListView  android:id="@+id/ContactList" android:layout_width="fill_parent" android:layout_height="fill_parent"  android:layout_marginBottom="60px" android:divider="@drawable/divider" android:cacheColorHint="#00000000"/>
        <ImageView android:layout_gravity="bottom|center" android:src="@drawable/bttaonhom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/bt_CreateGroup1"></ImageView>
   </FrameLayout>

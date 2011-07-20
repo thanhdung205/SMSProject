@@ -41,25 +41,24 @@ public class Database_Command {
 	}
 	public void Insert_tblAutoSend(String DateTime,String Content){
 		ContentValues args = new ContentValues();
-	
 		args.put("DatetimeSend", DateTime);
 		args.put("Content", Content);
 		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend(), null, args);
 	}
 	public void Insert_tblAutoSend_Contact(int IDAuto,String Name,String NumberPhone){
 		ContentValues args = new ContentValues();
-		 args.put("ID_AutoSend", IDAuto);
+		 args.put("ID_Send", IDAuto);
 		 args.put("Name", Name);
 		 args.put("NumberPhone", NumberPhone);
 		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend_Contact(), null, args);
 	}
 	public void Insert_tblHistory(String DateTime,String Content){
 		ContentValues args = new ContentValues();
-		//args.put("ID", 2);
 		args.put("DateTime", DateTime);
 		args.put("Content", Content);
 		vari.GetDatabase().GetDatabase().insert(vari.GetHistory(), null, args);
 	}
+	
 	public void Insert_tblHistory_Contact(int IDAuto,String Name,String NumberPhone){
 		ContentValues args = new ContentValues();
 		 args.put("ID_History", IDAuto);
@@ -126,6 +125,47 @@ public class Database_Command {
 	{
 		return vari.GetDatabase().GetDatabase().query(vari.GetTableReplace(), new String[] {"RepChar"}, 
                 null, null, null, null, null);
+	}
+	public Cursor GetEntryAutoSend()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetAutoSend(), new String[] {"ID","DatetimeSend","Content"}, 
+                null, null, null, null, null);
+	}
+	public Cursor GetEntryAutoSendContact()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetAutoSend_Contact(), new String[] {"ID","ID_Send","Name","NumberPhone"}, 
+                null, null, null, null, null);
+	}
+	public ArrayList<StructAutoSend> GetListAutoSend()
+	{
+		Cursor cs = GetEntryAutoSend();
+		ArrayList<StructAutoSend> list =new ArrayList<StructAutoSend>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructAutoSend gr = new StructAutoSend();
+			gr.SetID(cs.getInt(0));
+			gr.SetDateTime(cs.getString(1));
+			gr.SetContent(cs.getString(2));
+			list.add(gr);
+			cs.moveToNext();
+		}
+		return list;
+	}
+	public ArrayList<StructAutoSendContact> GetListAutoSendContact()
+	{
+		Cursor cs = GetEntryAutoSendContact();
+		ArrayList<StructAutoSendContact> list =new ArrayList<StructAutoSendContact>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructAutoSendContact gr = new StructAutoSendContact();
+			gr.SetID(cs.getInt(0));
+			gr.SetIDAuto(cs.getInt(1));
+			gr.SetName(cs.getString(2));
+			gr.SetNumberPhone(cs.getString(3));
+			list.add(gr);
+			cs.moveToNext();
+		}
+		return list;
 	}
 	public ArrayList<StructGroup> GetListGroup()
 	{
@@ -231,13 +271,14 @@ public class Database_Command {
 		return cha;
 	}
 	public int GetRowNumberHistoryContact(){
-		
 		Cursor cs = GetEntryHistory();
 		cs.moveToLast();
 		return cs.getInt(0);
-		
-		
-		
+	}
+public int GetRowNumberAutoSend(){
+		Cursor cs = GetEntryAutoSend();
+		cs.moveToLast();
+		return cs.getInt(0);		
 	}
 	
 	

@@ -25,7 +25,8 @@ public class MainProgram extends Activity {
         MenuItemAdapter ap = new MenuItemAdapter(this,R.layout.mainlist,array.arraylist);
         ListView list = (ListView) findViewById(R.id.menulist);
         list.setAdapter(ap);
-        
+        Intent intent = new Intent(MainProgram.this, Scheduler_Service.class);
+		startService(intent);
         list.setOnItemClickListener(new OnItemClickListener(){
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

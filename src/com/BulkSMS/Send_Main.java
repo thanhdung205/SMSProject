@@ -18,9 +18,8 @@ import android.widget.ListView;
 
 public class Send_Main extends Activity {
 	int flag = 0;
+	String DateTime ;
 	ArrayList<StructContact> listnum = new ArrayList<StructContact>();
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -42,8 +41,6 @@ public class Send_Main extends Activity {
 			}});
 		 btSend.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				
-			
 				SendSMS(txtContent.getText().toString(),com.GetReplace());
 				com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
 				int count = com.GetRowNumberHistoryContact();
@@ -78,6 +75,7 @@ public class Send_Main extends Activity {
 		if(All_Var.listnumber != null)
 		{
 			flag = 1;
+		
 			listnum = All_Var.listnumber;
 			for(int i = 0;i<All_Var.listnumber.size();i++)
 			{
@@ -89,6 +87,7 @@ public class Send_Main extends Activity {
 			txtNumber.setText(content);
 			All_Var.listnumber = null;
 		}
+		
 		
 	}
 	public void SetTextContent(EditText content)
@@ -106,11 +105,14 @@ public class Send_Main extends Activity {
 		SmsManager sms = SmsManager.getDefault();
 		for(int i =0;i<listnum.size();i++)
 		{
+		
 			if(Content.contains(RepChar)){
+				
 				if(listnum.get(i).GetName()==null)
 					Content.replace(RepChar, listnum.get(i).GetNumberPhone());
-				Content.replace(RepChar, listnum.get(i).GetName());
+				Content = Content.replace(RepChar, listnum.get(i).GetName());
 			}
+			
 			sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Content, null, null);
 		}
 		

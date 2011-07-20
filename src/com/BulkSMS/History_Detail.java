@@ -22,14 +22,12 @@ public class History_Detail extends Activity {
 		TextView TextContent = (TextView) findViewById(R.id.History_Content);
 		ListView ls = (ListView) findViewById(R.id.History_ListContact);
 		int ID = All_Var.ID_History;
-		
-		
 		TextContent.setText(All_Var.Content_History);
 		ArrayListHistoryDetail list = new ArrayListHistoryDetail(this);
 		AdapterListViewContactSub ap = new AdapterListViewContactSub(this,R.layout.customcontactlistviewsub,list.GetListFromID(ID));
 		ls.setAdapter(ap);
 		LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
-		 btExit.setOnClickListener(new OnClickListener(){
+		btExit.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
 				

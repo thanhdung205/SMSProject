@@ -25,8 +25,7 @@ public class MainGroup extends Activity {
 		ListView ls = (ListView) findViewById(R.id.Grouplist);
 		 Binding(ls);
 	}
-	public void Binding(ListView ls){
-		
+	public void Binding(ListView ls){	
 		 listgroup.SetListGroup();
 		 ArrayList<String> listname = listgroup.GetListGroupName();
 		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listname);
@@ -34,29 +33,22 @@ public class MainGroup extends Activity {
 	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		 setContentView(R.layout.maingroup);	 
 		 ListView ls = (ListView) findViewById(R.id.Grouplist);
 		 Binding(ls);
 		 ImageView bt = (ImageView) findViewById(R.id.bt_Creategroup);
-		 
+		
 		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
-			 
 			public void onClick(View arg0) {
 				finish();
 			}
-			 
 		 });
 		 bt.setOnClickListener(new OnClickListener(){
-
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN2"));
-				
 			}
-			 
-			 
 		 });
 		 ls.setOnItemClickListener(new OnItemClickListener(){
 

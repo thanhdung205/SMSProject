@@ -21,37 +21,23 @@ public class Storing_Detail extends Activity{
 		 LinearLayout btSend = (LinearLayout) findViewById(R.id.Storing_btSend);
 		 btSend.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				
+				startActivity(new Intent("com.BulkSMS.CLEARSCREEN4"));
+				finish();
 			}
 		 });
 		 btExit.setOnClickListener(new OnClickListener(){
-		
-		
 			public void onClick(View arg0) {
-				startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
 				finish();
 			}
-			 
-	
 		 });
 	}
-	
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
-		startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
-		super.onStop();
-		
+		super.onStop();	
 	}
-
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		
 		super.onDestroy();
-		
-		
-		
 	}
 	
 	

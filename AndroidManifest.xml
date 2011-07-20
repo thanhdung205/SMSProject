@@ -8,10 +8,10 @@
 	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
 	<uses-permission android:name="android.permission.SEND_SMS"/>
 	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
-
+	
     <application android:icon="@drawable/icon" android:label="@string/app_name"
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-    
+    	<service android:enabled="true" android:name=".Scheduler_Service"></service>
         <activity android:name=".MainProgram"
                   android:label="@string/app_name">
             <intent-filter>
@@ -149,6 +149,14 @@
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.BulkSMS.CLEARSCREEN17" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity android:name=".Scheduker_Detail"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.BulkSMS.CLEARSCREEN18" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
