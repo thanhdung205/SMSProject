@@ -11,6 +11,11 @@ public class All_Var {
 	public static String Date;
 	public static String Time;
 	public static int test ;
+	public static int Minute ;
+	public static int Hour ;
+	public static int Day ;
+	public static int Month ;
+	public static int Year;
 	public static String test1 ;
 	public static int ID_History;
 	public static int ID_AutoSend;

@@ -11,7 +11,19 @@
 	
     <application android:icon="@drawable/icon" android:label="@string/app_name"
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-    	<service android:enabled="true" android:name=".Scheduler_Service"></service>
+    	<service android:name="Scheduler_Service">
+			<intent-filter>
+				<action
+					android:name="com.BulkSMS.Scheduler_Service" />
+			</intent-filter>
+		</service>
+		<receiver android:process=":remote" android:name="SchedulerBroadcastReceiver">
+			<intent-filter>
+			<action
+			android:name="android.intent.action.BOOT_COMPLETED" />
+			<category android:name="android.intent.category.HOME" />
+			</intent-filter>
+		</receiver>
         <activity android:name=".MainProgram"
                   android:label="@string/app_name">
             <intent-filter>

@@ -20,12 +20,12 @@ public class Scheduler_SetTime extends Activity{
 		 LinearLayout btSet = (LinearLayout) findViewById(R.id.Scheduler_Settime);
 		 btSet.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				int Day = date.getDayOfMonth();
-				int Month = date.getMonth();
-				int Year = date.getYear();
-				int Hour = time.getCurrentHour();
-				int Minute = time.getCurrentMinute();
-				All_Var.Date = Minute + ":"+ Hour + " " + Day +"/" + Month + "/" +  Year;
+				All_Var.Day = date.getDayOfMonth();
+				All_Var.Month = date.getMonth();
+				All_Var.Year = date.getYear();
+				All_Var.Hour = time.getCurrentHour();
+				All_Var.Minute = time.getCurrentMinute();
+				All_Var.Date = All_Var.Hour + ":"+ All_Var.Minute + " " + All_Var.Day +"/" + All_Var.Month + "/" +  All_Var.Year;
 				finish();
 			}});
 		 btExit.setOnClickListener(new OnClickListener(){
