@@ -39,7 +39,7 @@ public class Database_Command {
 	public void Insert_tblAuto(String Name,int  Row){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.TableAuto + " values('" + Name +"','" + Row +"');");
 	}
-	public void Insert_tblAutoSend(String DateTime,String Content){
+	public void Insert_tblAutoSend(long DateTime,String Content){
 		ContentValues args = new ContentValues();
 		args.put("DatetimeSend", DateTime);
 		args.put("Content", Content);

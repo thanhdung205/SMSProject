@@ -1,5 +1,7 @@
 package com.BulkSMS;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,12 +22,17 @@ public class Scheduler_SetTime extends Activity{
 		 LinearLayout btSet = (LinearLayout) findViewById(R.id.Scheduler_Settime);
 		 btSet.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				All_Var.Day = date.getDayOfMonth();
-				All_Var.Month = date.getMonth();
-				All_Var.Year = date.getYear();
-				All_Var.Hour = time.getCurrentHour();
-				All_Var.Minute = time.getCurrentMinute();
-				All_Var.Date = All_Var.Hour + ":"+ All_Var.Minute + " " + All_Var.Day +"/" + All_Var.Month + "/" +  All_Var.Year;
+				if(!time.is24HourView()){
+					time.setIs24HourView(true);
+				}
+				Date datetime = new Date();
+				datetime.setDate(date.getDayOfMonth());
+				datetime.setMonth(date.getMonth());
+				datetime.setYear(date.getYear());
+				datetime.setHours(time.getCurrentHour());
+				datetime.setMinutes(time.getCurrentMinute());
+				long time = datetime.getTime();
+				All_Var.Date =time;
 				finish();
 			}});
 		 btExit.setOnClickListener(new OnClickListener(){

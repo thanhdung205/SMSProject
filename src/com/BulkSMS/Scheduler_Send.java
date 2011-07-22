@@ -21,9 +21,10 @@ import android.widget.LinearLayout;
 
 public class Scheduler_Send extends Activity{
 	int flag = 0;
-	String DateTime;
+	long DateTime;
 	AlarmManager alarm;
 	int ID;
+	Context con;
 	ArrayList<StructContact> listnum = new ArrayList<StructContact>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,28 +37,17 @@ public class Scheduler_Send extends Activity{
 		LinearLayout btAddTime =(LinearLayout) findViewById(R.id.Scheduler_btSubSettime);
 		ImageView btSend1 =(ImageView) findViewById(R.id.Scheduler_btSend12);
 		ImageView btAddContact =(ImageView) findViewById(R.id.Scheduler_btAdd);
-		final Intent intent1 = new Intent(this,SchedulerBroadcastReceiver.class);
-		  final PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
-				    intent1, PendingIntent.FLAG_ONE_SHOT);
+		con = this;
 		btAddContact.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN5"));
 			}});
 			btSend1.setOnClickListener(new OnClickListener(){
 				public void onClick(View arg0) {
-						Calendar cal = Calendar.getInstance();
-						cal.set(Calendar.DAY_OF_MONTH, All_Var.Day); 
-				        cal.set(Calendar.HOUR_OF_DAY, All_Var.Hour); 
-				        cal.set(Calendar.MINUTE, All_Var.Minute); 
-				        cal.set(Calendar.MONTH, All_Var.Month);
-				        cal.set(Calendar.YEAR, All_Var.Year);
-				        cal.set(Calendar.SECOND, 0);
+			
 				        SaveData(com,txtContent.getText().toString());
-				        All_Var.ID_AutoSend = ID;
-				        
-				        alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-				        alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-				
+						Scheduler_RepeatingAlarm sche = new Scheduler_RepeatingAlarm();
+						sche.Send(con);
 				        finish();
 			}});
 		btAddTime.setOnClickListener(new OnClickListener(){
@@ -93,9 +83,9 @@ public class Scheduler_Send extends Activity{
 			txtNumber.setText(content);
 			All_Var.listnumber = null;
 		}
-		if(All_Var.Date != null){
+		if(All_Var.Date != 0){
 			DateTime = All_Var.Date;
-			All_Var.Date = null;
+			All_Var.Date = 0;
 		}
 	}
 	public void SaveData(Database_Command com,String Content){
@@ -106,7 +96,6 @@ public class Scheduler_Send extends Activity{
 		for(int i = 0 ; i < listnum.size();i++){
 			com.Insert_tblAutoSend_Contact(ID, listnum.get(i).GetName(),listnum.get(i).GetNumberPhone());
 		}
-	//	DialogOK c = new DialogOK(this,"haha",com.GetListAutoSendContact().size() + "");
-	//	c.ShowMes();
+	
 	}
 }

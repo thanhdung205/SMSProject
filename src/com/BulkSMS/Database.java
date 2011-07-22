@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteException;
 public class Database {
 	SQLiteDatabase DB;
 	Context conte;
-	String DatabaseName ="DatabaseBulkSMS8";
+	String DatabaseName ="DatabaseBulkSMS11";
 	public SQLiteDatabase GetDatabase(){
 		return DB;
 	}
