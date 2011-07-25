@@ -103,17 +103,18 @@ public class Send_Main extends Activity {
 	{
 		
 		SmsManager sms = SmsManager.getDefault();
+		
 		for(int i =0;i<listnum.size();i++)
 		{
+			String Con = Content;
 		
-			if(Content.contains(RepChar)){
+			if(Con.contains(RepChar)){
 				
 				if(listnum.get(i).GetName()==null)
-					Content.replace(RepChar, listnum.get(i).GetNumberPhone());
-				Content = Content.replace(RepChar, listnum.get(i).GetName());
+					Con.replace(RepChar, listnum.get(i).GetNumberPhone());
+				Con = Con.replace(RepChar, listnum.get(i).GetName());
 			}
-			
-			sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Content, null, null);
+			sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Con, null, null);
 		}
 		
 	}

@@ -36,13 +36,20 @@ public class Database_Command {
 		 args.put("RepChar", Str);
 		 vari.GetDatabase().GetDatabase().insert(vari.GetTableReplace(), null, args);
 	}
+	public void Insert_tblSaveID(int Str,String Content){
+		 ContentValues args = new ContentValues();
+		 args.put("ID", Str);
+		 args.put("Content", Content);
+		 vari.GetDatabase().GetDatabase().insert(vari.GetTableSaveID(), null, args);
+	}
 	public void Insert_tblAuto(String Name,int  Row){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.TableAuto + " values('" + Name +"','" + Row +"');");
 	}
-	public void Insert_tblAutoSend(long DateTime,String Content){
+	public void Insert_tblAutoSend(String dateTime,String Content,String Status){
 		ContentValues args = new ContentValues();
-		args.put("DatetimeSend", DateTime);
+		args.put("DatetimeSend", dateTime);
 		args.put("Content", Content);
+		args.put("Status", Status);
 		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend(), null, args);
 	}
 	public void Insert_tblAutoSend_Contact(int IDAuto,String Name,String NumberPhone){
@@ -64,20 +71,45 @@ public class Database_Command {
 		 args.put("ID_History", IDAuto);
 		 args.put("Name", Name);
 		 args.put("NumberPhone", NumberPhone);
-		vari.GetDatabase().GetDatabase().insert(vari.GetHistory_Contact(), null, args);
+		 vari.GetDatabase().GetDatabase().insert(vari.GetHistory_Contact(), null, args);
 	}
 
 	public void Delete_tblGroup(int ID){
 		String[] args = {"" + ID + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.GetTableGroup(),"ID=?" ,args);
 	}
+	public void Delete_tblHistory(int ID){
+		String[] args = {"" + ID + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetHistory(),"ID=?" ,args);
+	}
+	public void Delete_tblAutoSend(int ID){
+		String[] args = {"" + ID + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetAutoSend(),"ID=?" ,args);
+	}
+	
 	public void Delete_tblContact(int ID){
 		String[] args = {"" + ID + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.TableContact,"ID_Group=?" ,args);
 	}
+	public void Delete_tblContact(String NumPhone){
+		String[] args = {"" + NumPhone + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.TableContact,"NumberPhone=?" ,args);
+	}
+	public void Delete_tblHistoryContact(int ID){
+		String[] args = {"" + ID + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetHistory_Contact(),"ID_History=?" ,args);
+	}
+	public void Delete_tblAutoSendContact(int ID){
+		String[] args = {"" + ID + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetAutoSend_Contact(),"ID_Send=?" ,args);
+	}
 	public void Delete_tblReplace(String Str){
 		String[] args = {"" + Str + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.GetTableReplace(),"RepChar=?" ,args);
+	}
+	public void Delete_tblSaveID(String Str){
+		String[] args = {"" + Str + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetTableSaveID(),"ID=?" ,args);
 	}
 	public void Update_tblAuto(String Name,int Row){
 		ContentValues args = new ContentValues();
@@ -90,6 +122,12 @@ public class Database_Command {
 		 args.put("RepChar", Str);
 		 String[] args1 = {"" + Str + ""};
 		 vari.GetDatabase().GetDatabase().update(vari.GetTableReplace(), args, "RepChar=?",args1);
+	}
+	public void Update_tblAutoSendStatus(int ID,String Str){
+		ContentValues args = new ContentValues();
+		 args.put("Status", Str);
+		 String[] args1 = {"" + ID + ""};
+		 vari.GetDatabase().GetDatabase().update(vari.GetAutoSend(), args, "ID=?",args1);
 	}
 	public Cursor GetEntryGroup()
 	{
@@ -126,9 +164,14 @@ public class Database_Command {
 		return vari.GetDatabase().GetDatabase().query(vari.GetTableReplace(), new String[] {"RepChar"}, 
                 null, null, null, null, null);
 	}
+	public Cursor GetEntrySaveID()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetTableSaveID(), new String[] {"ID","Content"}, 
+                null, null, null, null, null);
+	}
 	public Cursor GetEntryAutoSend()
 	{
-		return vari.GetDatabase().GetDatabase().query(vari.GetAutoSend(), new String[] {"ID","DatetimeSend","Content"}, 
+		return vari.GetDatabase().GetDatabase().query(vari.GetAutoSend(), new String[] {"ID","DatetimeSend","Content","Status"}, 
                 null, null, null, null, null);
 	}
 	public Cursor GetEntryAutoSendContact()
@@ -146,10 +189,22 @@ public class Database_Command {
 			gr.SetID(cs.getInt(0));
 			gr.SetDateTime(cs.getString(1));
 			gr.SetContent(cs.getString(2));
+			gr.SetStatus(cs.getString(3));
 			list.add(gr);
 			cs.moveToNext();
 		}
 		return list;
+	}
+	public void DeleteAll_AutoSend()
+	{
+		Cursor cs = GetEntryAutoSend();
+		
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			Delete_tblAutoSendContact(cs.getInt(0));
+			Delete_tblAutoSend(cs.getInt(0));
+			cs.moveToNext();
+		}
 	}
 	public ArrayList<StructAutoSendContact> GetListAutoSendContact()
 	{
@@ -163,6 +218,23 @@ public class Database_Command {
 			gr.SetName(cs.getString(2));
 			gr.SetNumberPhone(cs.getString(3));
 			list.add(gr);
+			cs.moveToNext();
+		}
+		return list;
+	}
+	public ArrayList<StructAutoSendContact> GetListAutoSendContact(int ID)
+	{
+		Cursor cs = GetEntryAutoSendContact();
+		ArrayList<StructAutoSendContact> list =new ArrayList<StructAutoSendContact>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructAutoSendContact gr = new StructAutoSendContact();
+			gr.SetID(cs.getInt(0));
+			gr.SetIDAuto(cs.getInt(1));
+			gr.SetName(cs.getString(2));
+			gr.SetNumberPhone(cs.getString(3));
+			if(gr.GetIDAuto() == ID)
+				list.add(gr);
 			cs.moveToNext();
 		}
 		return list;
@@ -237,6 +309,20 @@ public class Database_Command {
 		
 		return list;
 	}
+	public void DeleteAll_History()
+	{
+		
+		Cursor cs = GetEntryHistory();
+		
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			Delete_tblHistoryContact(cs.getInt(0));
+			Delete_tblHistory(cs.getInt(0));
+			cs.moveToNext();
+		}
+		
+		
+	}
 	
 	
 	public ArrayList<StructHistoryContact> GetListHistoryContact()
@@ -260,15 +346,35 @@ public class Database_Command {
 	{
 		String cha ="";
 		Cursor cs = GetEntryReplace();
-		try{
+		
+		
 		cs.moveToFirst();
-		cha = cs.getString(0);
-		}catch(Exception e){
+		if(cs.isAfterLast())
+		{
 			Insert_tblReplace("##");
-			cs.moveToFirst();
-			cha = cs.getString(0);
+			cha = "##";
 		}
+		else
+			cha = cs.getString(0);
 		return cha;
+	}
+	public StructAutoSend GetSaveID(){
+		Cursor cs = GetEntrySaveID();
+		cs.moveToFirst();
+		StructAutoSend auto = new StructAutoSend();
+		auto.SetID(cs.getInt(0));
+		auto.SetContent(cs.getString(1));
+		return auto;
+	}
+	public void DeleteAllSaveID()
+	{
+		Cursor cs = GetEntrySaveID();
+		cs.moveToFirst();
+		if(!cs.isAfterLast())
+		{
+			Delete_tblSaveID(cs.getString(0));
+			cs.moveToNext();
+		}	
 	}
 	public int GetRowNumberHistoryContact(){
 		Cursor cs = GetEntryHistory();

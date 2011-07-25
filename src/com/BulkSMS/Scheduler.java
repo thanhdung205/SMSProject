@@ -10,7 +10,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,16 +23,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class Scheduler extends Activity{
-	
+	Database_Command com;
+	ListView list;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.schedulermain);
-		ListView list = (ListView) findViewById(R.id.Scheduler_ListSMSAuto);
-		Database_Command com = new Database_Command(this);
-		AdapterListViewAuto adapter = new AdapterListViewAuto(this,R.layout.customautosendlistview,com.GetListAutoSend());
-		list.setAdapter(adapter);
+		list = (ListView) findViewById(R.id.Scheduler_ListSMSAuto);
+		com = new Database_Command(this);
+		registerForContextMenu(list);
 		list.setOnItemClickListener(new OnItemClickListener(){
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -54,6 +57,38 @@ public class Scheduler extends Activity{
 			 
 		 });
 	}
+	public void BindingListView()
+	{
+		AdapterListViewAuto adapter = new AdapterListViewAuto(this,R.layout.customautosendlistview,com.GetListAutoSend());
+		list.setAdapter(adapter);
+	}
+	public void onCreateContextMenu(ContextMenu menu, View v,
+		    ContextMenuInfo menuInfo) {
+		  if (v.getId()==R.id.Scheduler_ListSMSAuto) {
+		    menu.setHeaderTitle("Lựa chọn");
+		    String[] menuItems = {"Xóa","Xóa toàn bộ"};
+		    for (int i = 0; i<menuItems.length; i++) {
+		      menu.add(Menu.NONE, i, i, menuItems[i]);
+		    }
+		  }
+		}
+		@Override
+		public boolean onContextItemSelected(MenuItem item) {
+			Database_Command com = new Database_Command(this);
+		  AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		  int menuItemIndex = item.getItemId();
+		  int IDAuto = com.GetListAutoSend().get(info.position).GetID();
+		  switch(menuItemIndex){
+		  	case 0 : 	com.Delete_tblAutoSendContact(IDAuto);
+						com.Delete_tblAutoSend(IDAuto);
+						BindingListView();
+		  				break;
+		  	case 1 : 	com.DeleteAll_History();
+		  				BindingListView();
+		  				break;
+		  }
+		  return true;
+		}
 	
 	@Override
 	protected void onResume() {

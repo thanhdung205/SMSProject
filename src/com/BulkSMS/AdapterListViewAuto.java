@@ -28,9 +28,11 @@ public class AdapterListViewAuto extends ArrayAdapter<StructAutoSend> {
 		{
 				TextView tv1 =  ((CustomListViewAuto) v).TextContent;
 				TextView tv2 = ((CustomListViewAuto) v).TextDateTime;
+				TextView tv3 = ((CustomListViewAuto) v).TextStatus;
 				
 				tv1.setText(d.GetContent());
 				tv2.setText(d.GetDateTime());
+				tv3.setText(d.GetStatus());
 		}
 		return v;
 	}

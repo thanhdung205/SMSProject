@@ -4,6 +4,7 @@ public class StructAutoSend {
 	int ID;
 	String DateTimeSend;
 	String Content;
+	String Status;
 	public  int GetID(){
 		return ID;
 	}
@@ -12,6 +13,12 @@ public class StructAutoSend {
 	}
 	public String GetContent(){
 		return Content;
+	}
+	public String GetStatus(){
+		return Status;
+	}
+	public void SetStatus(String pStatus){
+		Status = pStatus;
 	}
 	public void SetID(int id)
 	{

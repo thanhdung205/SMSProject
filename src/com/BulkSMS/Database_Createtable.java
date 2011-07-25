@@ -9,6 +9,7 @@ public class Database_Createtable {
 	String TableContact ="tbl_Contact";
 	String TableTemplate="tbl_Template";
 	String TableAuto="tbl_Auto";
+	String TableSaveID = "tbl_SaveID";
 	String TableHistory="tbl_History";
 	String TableHistory_Contact="tbl_History_Contact";
 	String TableAutoSend="tbl_AutoSend";
@@ -18,6 +19,7 @@ public class Database_Createtable {
 	public Database_Createtable(Context con){
 		data = new Database(con);
 		data.CreateDatabase();
+		CreateTable_tblSaveID();
 		CreateTable_tblReplace();
 		CreateTable_tbl_History();
 		CreateTable_tblHistory_Contact();
@@ -35,6 +37,9 @@ public class Database_Createtable {
 	}
 	public String GetTableReplace(){
 		return TableReplace;
+	}
+	public String GetTableSaveID(){
+		return TableSaveID;
 	}
 	public String GetHistory(){
 		return TableHistory;
@@ -93,9 +98,13 @@ public class Database_Createtable {
 	{		
 		data.GetDatabase().execSQL("create table if not exists " + TableReplace + " ( RepChar text);");
 	}
+	public void CreateTable_tblSaveID()
+	{		
+		data.GetDatabase().execSQL("create table if not exists " + TableSaveID + " (ID int,Content text);");
+	}
 	public void CreateTable_tblAutoSend()
 	{		
-		data.GetDatabase().execSQL("create table if not exists " + TableAutoSend + " ( ID integer primary key AUTOINCREMENT,DatetimeSend text,Content text);");
+		data.GetDatabase().execSQL("create table if not exists " + TableAutoSend + " ( ID integer primary key AUTOINCREMENT,DatetimeSend text,Content text,Status text);");
 	}
 	public void CreateTable_tblAutoSend_Contact()
 	{		

@@ -8,7 +8,7 @@ public class All_Var {
 	public static String Text_Content;
 	public static ArrayList<StructContact> listnumber;
 	public static int flagTemplateSend = 0;
-	public static long Date = 0;
+	public static String Date ;
 	public static String Time;
 	public static int test ;
 	public static int Minute ;

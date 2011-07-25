@@ -9,56 +9,71 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
+import android.text.format.Time;
 
 public class Scheduler_RepeatingAlarm {
 	Date pdate =new Date();
 	StructAutoSend au;
 	public void Send(Context con)
 	{
-		
-		
 		AlarmManager alarm;
 		Intent intent1 = new Intent(con,SchedulerBroadcastReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(con, 0,
 				    intent1, PendingIntent.FLAG_ONE_SHOT);
-		Calendar cal = Calendar.getInstance();
-		GetAutoSend(con);
-		cal.set(Calendar.YEAR, pdate.getYear());
-		cal.set(Calendar.MONTH, pdate.getMonth());
-		cal.set(Calendar.DAY_OF_MONTH, pdate.getDate());
-		cal.set(Calendar.HOUR_OF_DAY, pdate.getHours());
-		cal.set(Calendar.MINUTE, pdate.getMinutes());
-		//cal.add(cal.SECOND,100);
-		//SmsManager sms = SmsManager.getDefault();
+		StructAutoSend autosend = GetAutoSend(con);
 		
-		//sms.sendTextMessage("01649551170", null, "uh" , null, null);
-        alarm = (AlarmManager) con.getSystemService(Context.ALARM_SERVICE);
-        alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-        
+		if(autosend != null){
+			Database_Command com = new Database_Command(con);
+			com.Insert_tblSaveID(autosend.GetID(),autosend.GetContent());
+			Calendar cal = Calendar.getInstance();
+			cal = ConvertDateTime(autosend.GetDateTime());
+	        alarm = (AlarmManager) con.getSystemService(Context.ALARM_SERVICE);
+	        alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+		}
 	}
-	public void GetAutoSend(Context con)
+	public StructAutoSend GetAutoSend(Context con)
 	{
 		
 		Database_Command data = new Database_Command(con);
 		ArrayList<StructAutoSend> auto = new  ArrayList<StructAutoSend>();
-		auto = data.GetListAutoSend(); 
-		long curdate = System.currentTimeMillis();
-		StructAutoSend autosend = auto.get(0); 
+		auto = data.GetListAutoSend();
+		Calendar g = Calendar.getInstance();
+		long curdate = g.getTimeInMillis();
+		ArrayList<StructAutoSend> listnewdate = new ArrayList<StructAutoSend>(); 
 		for(int i =0;i< auto.size();i++){
-			if(Long.parseLong(auto.get(i).GetDateTime()) > curdate
-					&& Long.parseLong(auto.get(i).GetDateTime())
-							< Long.parseLong(autosend.GetDateTime())){
-				autosend = auto.get(i);
+			
+			if(ConvertDateTime(auto.get(i).GetDateTime()).getTimeInMillis() > curdate){
+				listnewdate.add(auto.get(i));
 			}
 		}
-		
-	
-		DialogOK a = new DialogOK(con,"haha", autosend.GetID() + " " +  curdate);
-		a.ShowMes();
-		
-		
-		
+		if(listnewdate.size() > 0){
+			//System.out.println(1);
+				StructAutoSend autosend = listnewdate.get(0); 
+				for(int i =0; i < listnewdate.size();i++){
+					if(ConvertDateTime(autosend.GetDateTime()).getTimeInMillis() > ConvertDateTime(listnewdate.get(i).GetDateTime()).getTimeInMillis()){
+						autosend = listnewdate.get(i);
+					}
+				}
+				return autosend;
+		}
+		return null;
+	} 
+	public Calendar ConvertDateTime(String str){
+		Calendar cal = Calendar.getInstance();
+		String time = str.split(" ")[0];
+		String date = str.split(" ")[1];
+		int hour = Integer.parseInt(time.split(":")[0]);
+		int minute = Integer.parseInt(time.split(":")[1]);
+		int day = Integer.parseInt(date.split("/")[0]);
+		int month = Integer.parseInt(date.split("/")[1]);
+		int year = Integer.parseInt(date.split("/")[2]);
+		cal.set(Calendar.HOUR_OF_DAY, hour);
+		cal.set(Calendar.MINUTE, minute);
+		cal.set(Calendar.DAY_OF_MONTH,day);
+		cal.set(Calendar.MONTH, month);
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.SECOND, 0);
+		return cal;
 	}
-	
-	
 }
+

@@ -9,19 +9,18 @@
     <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
     	<TextView  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tạo nhóm" android:textColor="#FFFFFF" android:textSize="20px" android:textStyle="bold"></TextView>
     </LinearLayout>
-    <LinearLayout android:layout_marginTop="20px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
-    	<TextView android:layout_marginLeft="5px" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tên nhóm" android:textColor="#FFFFFF" android:textSize="15px" ></TextView>
-    </LinearLayout>
+   
     <LinearLayout android:layout_marginTop="10px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout2">
-        <EditText android:paddingLeft="10px" android:textColorHint="#FFFFFF" android:layout_marginLeft="8px" android:layout_marginRight="8px" android:text="" android:id="@+id/text_GroupName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/edittextback"></EditText>
+        <EditText android:hint="Tên nhóm" android:paddingLeft="10px"  android:layout_marginLeft="8px" android:layout_marginRight="8px" android:text="" android:id="@+id/text_GroupName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/edittextback"></EditText>
     	
     </LinearLayout>
-    <LinearLayout android:layout_marginTop="10px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
-    	<TextView android:layout_marginLeft="5px" android:textStyle="bold"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Danh sách số điện thoại" android:textColor="#FFFFFF" android:textSize="15px" ></TextView>
-    </LinearLayout>
-  <FrameLayout android:layout_marginTop="8px" android:layout_marginBottom="10px"  android:layout_width="fill_parent" android:layout_height="fill_parent">
-  	  	<TextView android:visibility="invisible" android:id="@+id/Group_Loading" android:layout_marginLeft="5px" android:textStyle="bold"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Đang tải ..." android:textColor="#FFFFFF" android:textSize="15px" ></TextView>
-     <ListView  android:id="@+id/ContactList" android:layout_width="fill_parent" android:layout_height="fill_parent"  android:layout_marginBottom="60px" android:divider="@drawable/divider" android:cacheColorHint="#00000000"/>
-       <ImageView android:layout_gravity="bottom|center" android:src="@drawable/bttaonhom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/bt_CreateGroup1"></ImageView>
+   
+  <FrameLayout android:layout_marginTop="8px"  android:layout_width="fill_parent" android:layout_height="fill_parent">
+  	<TextView android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
+  	<LinearLayout android:gravity="bottom|center"  android:layout_marginBottom="10px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+		    <LinearLayout android:gravity="center" android:id="@+id/bt_CreateGroup1" android:layout_marginLeft="30px" android:layout_marginRight="30px"  android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50px">
+		    	<TextView android:text="Tạo nhóm" android:textColor="#FFFFFF" android:textSize="15px" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>   	
+		       </LinearLayout>
+	  </LinearLayout>
   </FrameLayout>
 </LinearLayout>

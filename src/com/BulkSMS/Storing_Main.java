@@ -18,19 +18,23 @@ public class Storing_Main extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.storingonlinemain);
-		 ArrayList<String> ds = new ArrayList<String>();
-		 ds.add("Title 1");
-		 ds.add("Title 2");
-		 ds.add("Title 3");
-		 ds.add("Title 4");
-		 ds.add("Title 6");
-		 ds.add("Title 7");
-		 ds.add("Title 8");
-		 ds.add("Title 9");
-		 ds.add("Title 10");
+		ArrayList<StructTemplate> listtem = new ArrayList<StructTemplate>();
+		ConnectService con = new ConnectService(this);
+		listtem = con.GetTemplate();
+		DialogOK a = new DialogOK(this,"Haha",listtem.size()+"");
+		a.ShowMes();
+		ArrayList<String> ds = new ArrayList<String>();
+		ds.add("Title 1");
+		ds.add("Title 2");
+		ds.add("Title 3");
+		ds.add("Title 4");
+		ds.add("Title 6");
+		ds.add("Title 7");
+		ds.add("Title 8");
+		ds.add("Title 9");
+		ds.add("Title 10");
 		 
 		
 		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,ds);

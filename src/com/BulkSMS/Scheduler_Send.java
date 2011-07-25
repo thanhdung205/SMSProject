@@ -1,17 +1,11 @@
 package com.BulkSMS;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.PendingIntent;
-
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -21,7 +15,7 @@ import android.widget.LinearLayout;
 
 public class Scheduler_Send extends Activity{
 	int flag = 0;
-	long DateTime;
+	String DateTime;
 	AlarmManager alarm;
 	int ID;
 	Context con;
@@ -83,16 +77,14 @@ public class Scheduler_Send extends Activity{
 			txtNumber.setText(content);
 			All_Var.listnumber = null;
 		}
-		if(All_Var.Date != 0){
+		if(All_Var.Date != null){
 			DateTime = All_Var.Date;
-			All_Var.Date = 0;
+			All_Var.Date = null;
 		}
 	}
 	public void SaveData(Database_Command com,String Content){
-		
-		com.Insert_tblAutoSend(DateTime, Content);		
+		com.Insert_tblAutoSend(DateTime, Content,"Chưa gửi");		
 		ID = com.GetRowNumberAutoSend();
-		
 		for(int i = 0 ; i < listnum.size();i++){
 			com.Insert_tblAutoSend_Contact(ID, listnum.get(i).GetName(),listnum.get(i).GetNumberPhone());
 		}
