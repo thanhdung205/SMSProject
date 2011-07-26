@@ -24,6 +24,7 @@ public class Scheduler_RepeatingAlarm {
 		
 		if(autosend != null){
 			Database_Command com = new Database_Command(con);
+			com.DeleteAllSaveID();
 			com.Insert_tblSaveID(autosend.GetID(),autosend.GetContent());
 			Calendar cal = Calendar.getInstance();
 			cal = ConvertDateTime(autosend.GetDateTime());
