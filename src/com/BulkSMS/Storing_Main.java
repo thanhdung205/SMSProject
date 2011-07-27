@@ -29,6 +29,7 @@ public class Storing_Main extends Activity{
 		con = new ConnectService(this);
 		listtem = new ArrayList<StructTemplate>();
 		final Context a = this;
+		
 		final ProgressDialog progressDialog = ProgressDialog.show(this, "", "Đang tải...");
 		new Thread() {
 

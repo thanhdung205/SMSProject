@@ -27,10 +27,11 @@ public class CreateGroup extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.creategroup);
 		
-		
+		final Context Con = this;
 		LinearLayout bt = (LinearLayout) findViewById(R.id.bt_CreateGroup1);
 		final EditText Text_GName =  (EditText) findViewById(R.id.text_GroupName);
 		final Database_Command com = new Database_Command(this);
+		
 		 bt.setOnClickListener(new OnClickListener(){
 			 
 			public void onClick(View arg0) {
@@ -43,11 +44,8 @@ public class CreateGroup extends Activity{
 		 btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				finish();
+				
 			} 
 		 });
+}	
 }
-	
-	
-}
-
-

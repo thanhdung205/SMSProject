@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -15,40 +16,61 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Send_Main extends Activity {
 	int flag = 0;
 	String DateTime ;
+	String number;
 	ArrayList<StructContact> listnum = new ArrayList<StructContact>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainsms);
 		
-		 EditText txtNumber = (EditText) findViewById(R.id.Send_TextNumberphone);
+		 final EditText txtNumber = (EditText) findViewById(R.id.Send_TextNumberphone);
 		 final EditText txtContent = (EditText) findViewById(R.id.Send_TextContent);
 		 final Database_Command com = new Database_Command(this);
-	
-			
+		 final Context con =this;
 		 ImageView btSend = (ImageView) findViewById(R.id.Send_btSend);
 		 LinearLayout btSelectTemplate = (LinearLayout) findViewById(R.id.SMS_SelectAvailableTemplate);
+		 LinearLayout btSelectOnlineTemplate = (LinearLayout) findViewById(R.id.SMS_SelectOnlineTemplate);
 		 SetTextContent(txtContent);
+		 
 		 btSelectTemplate.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
-				finish();
+				
 			}});
+		 btSelectOnlineTemplate.setOnClickListener(new OnClickListener(){
+
+			public void onClick(View arg0) {
+				startActivity(new Intent("com.BulkSMS.CLEARSCREEN13"));
+				
+			}});
+		 
 		 btSend.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				SendSMS(txtContent.getText().toString(),com.GetReplace());
-				com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
-				int count = com.GetRowNumberHistoryContact();
-				for(int i = 0 ; i < listnum.size(); i++)
+				
+				if(listnum == null)
 				{
-					com.Insert_tblHistory_Contact(count, listnum.get(i).GetName(), listnum.get(i).GetNumberPhone());
+					Toast.makeText(All_Var.Con, "Đã gửi tin", Toast.LENGTH_SHORT).show();
+					SendSMS(0,txtContent.getText().toString(),com.GetReplace());
+					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
+					int count = com.GetRowNumberHistoryContact();
+					com.Insert_tblHistory_Contact(count,"",number);
 				}
-				finish();
+				else{
+					number = txtContent.getText().toString();
+					SendSMS(1,txtContent.getText().toString(),com.GetReplace());
+					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
+					int count = com.GetRowNumberHistoryContact();
+					for(int i = 0 ; i < listnum.size(); i++)
+					{
+						com.Insert_tblHistory_Contact(count, listnum.get(i).GetName(), listnum.get(i).GetNumberPhone());
+					}
+				}
+				//finish();
 			}});
 		 
 		 ImageView btAdd = (ImageView) findViewById(R.id.Send_btAdd);
@@ -72,6 +94,10 @@ public class Send_Main extends Activity {
 		super.onResume();
 		EditText txtNumber = (EditText) findViewById(R.id.Send_TextNumberphone);
 		String content="";
+		if(All_Var.Detail_Content != null){
+			EditText txtContent = (EditText) findViewById(R.id.Send_TextContent);
+			txtContent.setText(All_Var.Detail_Content);
+		}
 		if(All_Var.listnumber != null)
 		{
 			flag = 1;
@@ -99,23 +125,28 @@ public class Send_Main extends Activity {
 			
 		}
 	}
-	public void SendSMS(String Content,String RepChar)
+	public void SendSMS(int flag,String Content,String RepChar)
 	{
 		
 		SmsManager sms = SmsManager.getDefault();
-		
-		for(int i =0;i<listnum.size();i++)
-		{
-			String Con = Content;
-		
-			if(Con.contains(RepChar)){
-				
-				if(listnum.get(i).GetName()==null)
-					Con.replace(RepChar, listnum.get(i).GetNumberPhone());
-				Con = Con.replace(RepChar, listnum.get(i).GetName());
+		if(flag == 1){
+			for(int i =0;i<listnum.size();i++)
+			{
+				String Con = Content;
+			
+				if(Con.contains(RepChar)){ 
+					if(listnum.get(i).GetName()==null)
+						Con.replace(RepChar, listnum.get(i).GetNumberPhone());
+					Con = Con.replace(RepChar, listnum.get(i).GetName());
+				}
+				sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Con, null, null);
 			}
-			sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Con, null, null);
 		}
+		else
+			if(Content.contains(RepChar))
+			{
+				sms.sendTextMessage(number,null, Content, null, null);
+			}
 		
 	}
 	public String GetDateTime()

@@ -17,16 +17,17 @@
 				 <TextView android:text="Nhóm" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
 			</LinearLayout>
 	</LinearLayout>
+		 <LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" >
+			  <EditText android:hint="Nhap vao ten tim kiem" android:paddingLeft="10px"  android:layout_marginLeft="8px" android:layout_marginRight="8px" android:text="" android:id="@+id/Contact_txtFind" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/edittextback"></EditText>
+	</LinearLayout>
 	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Send_GroupContact" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>
 	       <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-				       <LinearLayout android:id="@+id/Send_btOK"  android:layout_marginLeft="20px" android:gravity="center" android:layout_marginRight="20px" android:background="@drawable/tap"  android:layout_weight="50" android:layout_height="50px" android:layout_width="fill_parent">
-				       		<TextView android:text="OK" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
+				       <LinearLayout android:id="@+id/Send_btOK"  android:layout_marginLeft="30px" android:gravity="center" android:layout_marginRight="30px" android:background="@drawable/tap"   android:layout_height="50px" android:layout_width="fill_parent">
+				       		<TextView android:text="Chap nhan" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
 				       		
 				       </LinearLayout>
-				       <LinearLayout android:id="@+id/Send_btCancel" android:gravity="center" android:background="@drawable/tap" android:layout_marginLeft="20px" android:layout_marginRight="20px"  android:layout_weight="50" android:layout_width="fill_parent" android:layout_height="50px">
-				       		<TextView android:text="Hủy" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
-				       </LinearLayout>
+				   
 				       
 				       
 	       </LinearLayout>

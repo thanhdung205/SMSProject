@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -25,21 +29,44 @@ public class Send_ContactGroup extends Activity {
 		
 		LinearLayout btContact = (LinearLayout) findViewById(R.id.Send_tabContact);
 		LinearLayout btGroup = (LinearLayout) findViewById(R.id.Send_tabC);
-		LinearLayout btCancel = (LinearLayout) findViewById(R.id.Send_btCancel);
-		LinearLayout btOK = (LinearLayout) findViewById(R.id.Send_btOK);
 		
+		LinearLayout btOK = (LinearLayout) findViewById(R.id.Send_btOK);
+		final EditText txtFind = (EditText) findViewById(R.id.Contact_txtFind);
+
 		final ListView list = (ListView) findViewById(R.id.Send_GroupContact);
 		
-		listcontact = GetContact().GetListContact();
+		listcontact = All_Var.listcontact.GetListContact();
 		listgroup = GetStructListGroup();
 		final AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview, listcontact);
 		list.setAdapter(ap);
-		
-		
+		final Context con =this;
+		txtFind.addTextChangedListener(new TextWatcher(){
+
+			public void afterTextChanged(Editable arg0) {
+				
+			}
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				
+			}
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				if(txtFind.getText().toString() == "")
+				{
+					list.setAdapter(ap);
+				}
+				else
+				{
+					final AdapterListviewContact ap2 = new AdapterListviewContact(con,R.layout.customcontactlistview, FindContact(txtFind.getText().toString()));
+					list.setAdapter(ap2);
+				}
+			}
+		});
 	    final AdapterListviewGroup ap1 = new AdapterListviewGroup(this,R.layout.customgrouplistview,listgroup);
 		btContact.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				list.setAdapter(ap);
+				txtFind.setVisibility(View.VISIBLE);
 			    flag = 0;
 			}
 			
@@ -54,13 +81,9 @@ public class Send_ContactGroup extends Activity {
 		btGroup.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				list.setAdapter(ap1);
+				txtFind.setVisibility(View.INVISIBLE);
 				flag = 1;
 			}
-		});
-		btCancel.setOnClickListener(new OnClickListener(){
-			public void onClick(View arg0) {
-				finish();
-			}			
 		});
 		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
@@ -147,6 +170,17 @@ public class Send_ContactGroup extends Activity {
 				 All_Var.listnumber.add(con);
 			}
 		}
+	}
+	public ArrayList<Struct_ListViewContact> FindContact(String Name)
+	{
+		ArrayList<Struct_ListViewContact> contact = new ArrayList<Struct_ListViewContact>();
+		for(int i=0; i < listcontact.size();i++)
+		{
+			if(listcontact.get(i).GetContact().GetName().toUpperCase().contains(Name.toUpperCase())){
+				contact.add(listcontact.get(i));
+			}
+		}
+		return contact;
 	}
 
 }

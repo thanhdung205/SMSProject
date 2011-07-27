@@ -71,23 +71,18 @@ public class ConnectService {
 	        	http.call(SOAP_ACTION, soapenvelope);
 	        	SoapObject result = (SoapObject) soapenvelope.getResponse();
 	        	int totalCount = result.getPropertyCount();
-	        	       	
 	        	    for (int detailCount = 0; detailCount < totalCount; detailCount++) {
 	        	       SoapObject pojoSoap = (SoapObject) result.getProperty(detailCount);
 	        	       StructTemplate tem = new StructTemplate();
 	        	       tem.SetID(Integer.parseInt(pojoSoap.getProperty("ID").toString()));
 	        	       tem.SetContent(pojoSoap.getProperty("Content").toString());
 	        	       listtem.add(tem);
-	        	    
 	        	    }
 	        }
 	        catch(Exception e){
 	        	 DialogOK a = new DialogOK(Con,"Thông báo",e.getMessage());
 	             a.ShowMes();
-	        	
 	        }
-		
-	 
 		return listtem;
 }
 }

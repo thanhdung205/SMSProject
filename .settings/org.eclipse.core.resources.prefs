@@ -1,4 +1,4 @@
-#Mon Jul 25 21:05:11 PDT 2011
+#Tue Jul 26 19:36:15 PDT 2011
 eclipse.preferences.version=1
 encoding//src/com/BulkSMS/ArrayListMenu.java=UTF-8
 encoding//src/com/BulkSMS/ArrayListMenuSetting.java=UTF-8
@@ -9,6 +9,7 @@ encoding//src/com/BulkSMS/MainProgram.java=UTF-8
 encoding//src/com/BulkSMS/Scheduler.java=UTF-8
 encoding//src/com/BulkSMS/SchedulerBroadcastReceiver.java=UTF-8
 encoding//src/com/BulkSMS/Scheduler_Send.java=UTF-8
+encoding//src/com/BulkSMS/Send_Main.java=UTF-8
 encoding//src/com/BulkSMS/Setting_Main.java=UTF-8
 encoding//src/com/BulkSMS/Storing_Main.java=UTF-8
 encoding//src/com/BulkSMS/Storing_Template.java=UTF-8

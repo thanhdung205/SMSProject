@@ -28,17 +28,26 @@ public class Scheduler_Send extends Activity{
 		EditText txtNumber = (EditText) findViewById(R.id.Scheduler_TextNumberphone);
 		final EditText txtContent = (EditText) findViewById(R.id.Scheduler_TextContent);
 		final Database_Command com = new Database_Command(this);
+		LinearLayout btSelectTemplate =(LinearLayout) findViewById(R.id.Scheduler_btSelectTemplate);
+		LinearLayout btSelectOnlineTemplate =(LinearLayout) findViewById(R.id.Scheduler_btSelectOnlineTemplate);
 		LinearLayout btAddTime =(LinearLayout) findViewById(R.id.Scheduler_btSubSettime);
 		ImageView btSend1 =(ImageView) findViewById(R.id.Scheduler_btSend12);
 		ImageView btAddContact =(ImageView) findViewById(R.id.Scheduler_btAdd);
 		con = this;
+		btSelectTemplate.setOnClickListener(new OnClickListener(){
+			public void onClick(View arg0) {
+				startActivity(new Intent("com.BulkSMS.CLEARSCREEN6"));
+			}});
+		btSelectOnlineTemplate.setOnClickListener(new OnClickListener(){
+			public void onClick(View arg0) {
+				startActivity(new Intent("com.BulkSMS.CLEARSCREEN13"));
+			}});
 		btAddContact.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN5"));
 			}});
 			btSend1.setOnClickListener(new OnClickListener(){
 				public void onClick(View arg0) {
-			
 				        SaveData(com,txtContent.getText().toString());
 						Scheduler_RepeatingAlarm sche = new Scheduler_RepeatingAlarm();
 						sche.Send(con);
@@ -63,6 +72,11 @@ public class Scheduler_Send extends Activity{
 		super.onResume();
 		EditText txtNumber = (EditText) findViewById(R.id.Scheduler_TextNumberphone);
 		String content="";
+		if(All_Var.Detail_Content!= null){
+			EditText txtContent = (EditText) findViewById(R.id.Scheduler_TextContent);
+			txtContent.setText(All_Var.Detail_Content);
+			All_Var.Detail_Content= null;
+		}
 		if(All_Var.listnumber != null)
 		{
 			flag = 1;

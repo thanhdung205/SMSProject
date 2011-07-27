@@ -48,6 +48,7 @@ public final class R {
     public static final class id {
         public static final int AutoSend_TxtContent=0x7f050007;
         public static final int AutoSend_TxtDateTime=0x7f050008;
+        public static final int Contact_txtFind=0x7f05003d;
         public static final int Group_AddContact=0x7f050018;
         public static final int Group_ListDetail=0x7f050017;
         public static final int Group_List_Group=0x7f050010;
@@ -76,12 +77,11 @@ public final class R {
         public static final int Scheduler_timePicker=0x7f050035;
         public static final int Scheduler_txtDateTime=0x7f050015;
         public static final int Scheduler_txtStatus=0x7f050016;
-        public static final int Send_GroupContact=0x7f05003d;
+        public static final int Send_GroupContact=0x7f05003e;
         public static final int Send_TextContent=0x7f050027;
         public static final int Send_TextNumberphone=0x7f050023;
         public static final int Send_btAdd=0x7f050024;
-        public static final int Send_btCancel=0x7f05003f;
-        public static final int Send_btOK=0x7f05003e;
+        public static final int Send_btOK=0x7f05003f;
         public static final int Send_btSend=0x7f050028;
         public static final int Send_tabC=0x7f05003c;
         public static final int Send_tabContact=0x7f05003b;
