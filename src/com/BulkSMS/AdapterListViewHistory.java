@@ -31,9 +31,11 @@ public class AdapterListViewHistory extends ArrayAdapter<StructHistory>{
 		{
 				TextView tv1 =  ((CustomListViewHistory) v).TextContent;
 				TextView tv2 = ((CustomListViewHistory) v).TextDateTime;
+				TextView tv3 = ((CustomListViewHistory) v).TextStatus;
 				
 				tv1.setText(d.GetContent());
 				tv2.setText(d.GetDateTime());
+				tv3.setText(d.GetStatus());
 		}
 		return v;
 	}

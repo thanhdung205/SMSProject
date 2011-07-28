@@ -88,7 +88,7 @@ public class Database_Createtable {
 	}
 	public void CreateTable_tbl_History()
 	{
-		data.GetDatabase().execSQL("create table if not exists " + TableHistory + " ( ID integer primary key AUTOINCREMENT,DateTime text, Content Text);");
+		data.GetDatabase().execSQL("create table if not exists " + TableHistory + " ( ID integer primary key AUTOINCREMENT,DateTime text, Content Text, Status text);");
 	}
 	public void CreateTable_tblHistory_Contact()
 	{		

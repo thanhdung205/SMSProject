@@ -59,10 +59,11 @@ public class Database_Command {
 		 args.put("NumberPhone", NumberPhone);
 		vari.GetDatabase().GetDatabase().insert(vari.GetAutoSend_Contact(), null, args);
 	}
-	public void Insert_tblHistory(String DateTime,String Content){
+	public void Insert_tblHistory(String DateTime,String Content,String Status){
 		ContentValues args = new ContentValues();
 		args.put("DateTime", DateTime);
 		args.put("Content", Content);
+		args.put("Status", Status);
 		vari.GetDatabase().GetDatabase().insert(vari.GetHistory(), null, args);
 	}
 	
@@ -129,6 +130,12 @@ public class Database_Command {
 		 String[] args1 = {"" + ID + ""};
 		 vari.GetDatabase().GetDatabase().update(vari.GetAutoSend(), args, "ID=?",args1);
 	}
+	public void Update_tblHistoryStatus(int ID,String Str){
+		ContentValues args = new ContentValues();
+		 args.put("Status", Str);
+		 String[] args1 = {"" + ID + ""};
+		 vari.GetDatabase().GetDatabase().update(vari.GetHistory(), args, "ID=?",args1);
+	}
 	public Cursor GetEntryGroup()
 	{
 		return vari.GetDatabase().GetDatabase().query(vari.GetTableGroup(), new String[] {"ID", "Name"}, 
@@ -151,7 +158,7 @@ public class Database_Command {
 	}
 	public Cursor GetEntryHistory()
 	{
-		return vari.GetDatabase().GetDatabase().query(vari.GetHistory(), new String[] {"ID", "DateTime","Content"}, 
+		return vari.GetDatabase().GetDatabase().query(vari.GetHistory(), new String[] {"ID", "DateTime","Content","Status"}, 
                 null, null, null, null, null);
 	}
 	public Cursor GetEntryHistoryContact()
@@ -302,11 +309,10 @@ public class Database_Command {
 			tp.SetID(cs.getInt(0));
 			tp.SetDateTime(cs.getString(1));
 			tp.SetContent(cs.getString(2));
-			
+			tp.SetStatus(cs.getString(3));
 			list.add(tp);
 			cs.moveToNext();
 		}
-		
 		return list;
 	}
 	public void DeleteAll_History()

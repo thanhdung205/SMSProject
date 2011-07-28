@@ -5,13 +5,14 @@
   android:layout_height="fill_parent"
   android:orientation="vertical">
   
-    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent"  android:layout_height="50px">
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent"  android:layout_height="60px">
         <LinearLayout  android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" >
     		<ImageView android:src="@drawable/pic" android:layout_width="40px" android:layout_height="40px"></ImageView>    	
         </LinearLayout>
         <LinearLayout android:gravity="center_vertical" android:layout_marginLeft="10px" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" >
     		<TextView android:textStyle="bold" android:textColor="#FFFFFF" android:text="TextView" android:id="@+id/History_TxtContent" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>
-    		<TextView android:layout_marginTop="5px" android:textStyle="bold" android:textColor="#FFFFFF" android:text="TextView" android:id="@+id/History_TxtDateTime" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>    	
+    		<TextView android:layout_marginTop="3px" android:textStyle="bold" android:textColor="#FFFFFF" android:text="TextView" android:id="@+id/History_TxtDateTime" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>
+    		<TextView android:layout_marginTop="3px" android:textStyle="bold" android:textColor="#FF0000" android:text="TextView" android:id="@+id/History_TxtStatus" android:layout_width="wrap_content" android:layout_height="wrap_content"  ></TextView>    	
         </LinearLayout>
     	
     </LinearLayout>

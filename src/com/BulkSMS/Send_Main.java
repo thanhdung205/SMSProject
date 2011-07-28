@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -22,6 +25,8 @@ public class Send_Main extends Activity {
 	int flag = 0;
 	String DateTime ;
 	String number;
+	int ID;
+	Database_Command com;
 	ArrayList<StructContact> listnum = new ArrayList<StructContact>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class Send_Main extends Activity {
 		
 		 final EditText txtNumber = (EditText) findViewById(R.id.Send_TextNumberphone);
 		 final EditText txtContent = (EditText) findViewById(R.id.Send_TextContent);
-		 final Database_Command com = new Database_Command(this);
+		 com = new Database_Command(this);
 		 final Context con =this;
 		 ImageView btSend = (ImageView) findViewById(R.id.Send_btSend);
 		 LinearLayout btSelectTemplate = (LinearLayout) findViewById(R.id.SMS_SelectAvailableTemplate);
@@ -54,27 +59,29 @@ public class Send_Main extends Activity {
 				
 				if(listnum == null)
 				{
-					Toast.makeText(All_Var.Con, "Đã gửi tin", Toast.LENGTH_SHORT).show();
-					SendSMS(0,txtContent.getText().toString(),com.GetReplace());
-					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
+					Toast.makeText(All_Var.Con, "Ä�Ã£ gá»­i tin", Toast.LENGTH_SHORT).show();
+					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString(),"Da gui");
 					int count = com.GetRowNumberHistoryContact();
+					SendSMS(0,txtContent.getText().toString(),com.GetReplace());
+				
+					ID = count;
 					com.Insert_tblHistory_Contact(count,"",number);
 				}
 				else{
 					number = txtContent.getText().toString();
-					SendSMS(1,txtContent.getText().toString(),com.GetReplace());
-					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString());
+					com.Insert_tblHistory(GetDateTime(), txtContent.getText().toString(),"Da gui");
 					int count = com.GetRowNumberHistoryContact();
+					ID = count;
+					SendSMS(1,txtContent.getText().toString(),com.GetReplace());
+					
 					for(int i = 0 ; i < listnum.size(); i++)
 					{
 						com.Insert_tblHistory_Contact(count, listnum.get(i).GetName(), listnum.get(i).GetNumberPhone());
 					}
 				}
-				//finish();
+				finish();
 			}});
-		 
 		 ImageView btAdd = (ImageView) findViewById(R.id.Send_btAdd);
-		 
 		 btAdd.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN5"));
@@ -85,12 +92,9 @@ public class Send_Main extends Activity {
 				finish();
 			}
 		 });
-
 	}
-	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		EditText txtNumber = (EditText) findViewById(R.id.Send_TextNumberphone);
 		String content="";
@@ -128,6 +132,47 @@ public class Send_Main extends Activity {
 	public void SendSMS(int flag,String Content,String RepChar)
 	{
 		
+		
+		 String SENT = "SMS_SENT";
+	        String DELIVERED = "SMS_DELIVERED";
+	 
+	        PendingIntent sentPI = PendingIntent.getBroadcast(this, 0,
+	            new Intent(SENT), 0);
+	 
+	        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, 0,
+	            new Intent(DELIVERED), 0);
+	 
+	        
+	        registerReceiver(new BroadcastReceiver(){
+	            @Override
+	            public void onReceive(Context arg0, Intent arg1) {
+	            	if(getResultCode() == Activity.RESULT_OK )
+	            	{
+	            		com.Update_tblHistoryStatus(ID, "Da gui");
+	            	}
+	            	else{
+	            		com.Update_tblHistoryStatus(ID, "Khong gui duoc");
+	            	}       
+	            }
+	        }, new IntentFilter(SENT));
+	        registerReceiver(new BroadcastReceiver(){
+	            @Override
+	            public void onReceive(Context arg0, Intent arg1) {
+	            	if(getResultCode() == Activity.RESULT_OK )
+	            	{
+	            		com.Update_tblHistoryStatus(ID, "Gui thanh cong");
+	            	}
+	            }
+	        }, new IntentFilter(DELIVERED));        
+	 
+	       // SmsManager sms = SmsManager.getDefault();
+	       // sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);        
+		
+		
+		
+		
+		
+		
 		SmsManager sms = SmsManager.getDefault();
 		if(flag == 1){
 			for(int i =0;i<listnum.size();i++)
@@ -139,15 +184,14 @@ public class Send_Main extends Activity {
 						Con.replace(RepChar, listnum.get(i).GetNumberPhone());
 					Con = Con.replace(RepChar, listnum.get(i).GetName());
 				}
-				sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Con, null, null);
+				sms.sendTextMessage(listnum.get(i).GetNumberPhone(), null, Con, sentPI, deliveredPI);
 			}
 		}
 		else
 			if(Content.contains(RepChar))
 			{
-				sms.sendTextMessage(number,null, Content, null, null);
+				sms.sendTextMessage(number,null, Content, sentPI, deliveredPI);
 			}
-		
 	}
 	public String GetDateTime()
 	{
