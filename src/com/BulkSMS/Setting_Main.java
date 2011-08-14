@@ -22,7 +22,7 @@ public class Setting_Main extends Activity {
         MenuItemAdapter ap = new MenuItemAdapter(this,R.layout.mainlist,array.GetMenuSetting());
 	    ListView list = (ListView) findViewById(R.id.menusettinglist);
 	    list.setAdapter(ap);
-		LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		
 	    list.setOnItemClickListener(new OnItemClickListener(){
 
@@ -37,6 +37,7 @@ public class Setting_Main extends Activity {
 	    btExit.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				finish();
 				
 			}});

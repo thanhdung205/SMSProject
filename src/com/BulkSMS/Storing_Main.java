@@ -58,9 +58,10 @@ public class Storing_Main extends Activity{
 				All_Var.ID_Subject = (StructTemplate) arg0.getItemAtPosition(arg2);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN14"));
 			}});
-		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				finish();
 			} 
 		 });

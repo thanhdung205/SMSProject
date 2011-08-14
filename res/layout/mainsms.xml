@@ -6,43 +6,52 @@
   android:background="@drawable/background"
   android:orientation="vertical">
   
-  	<LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
-		<TextView android:text="Gửi tin nhắn" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+  	<LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50dip" android:background="@drawable/maintitle" >
+		<TextView android:text="Gửi tin nhắn" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content" android:textSize="20dip"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
 		<LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" >
-		  	<FrameLayout android:layout_marginTop="4px" android:orientation="horizontal" android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:layout_height="wrap_content">
-				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<EditText android:hint="Số điện thoại" android:paddingLeft="10px" android:paddingRight="10px" android:singleLine="true" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" android:id="@+id/Send_TextNumberphone" ></EditText>
+		  	<FrameLayout android:layout_marginTop="4dip" android:orientation="horizontal" android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5dip" >
+						<EditText android:hint="Số điện thoại" android:paddingLeft="10dip" android:paddingRight="10dip" android:singleLine="true" android:background="@drawable/edittextback"  android:layout_marginLeft="5dip" android:layout_width="fill_parent" android:layout_height="50dip" android:layout_marginRight="60dip" android:id="@+id/Send_TextNumberphone" ></EditText>
 					</LinearLayout>
 					
-					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<ImageView android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/add" android:id="@+id/Send_btAdd"></ImageView>
+					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5dip" >
+						
+						 <LinearLayout android:gravity="center" android:background="@drawable/tap" android:layout_width="50dip" android:layout_height="50dip" android:id="@+id/Send_btAdd">
+							<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="20dip" android:text="+" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content"></TextView>
+						</LinearLayout>
 					</LinearLayout>
 		  	</FrameLayout>
 	</LinearLayout>
-	<LinearLayout android:layout_marginTop="10px"  android:orientation="vertical"  android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="wrap_content">
-	       		<LinearLayout android:gravity="center" android:layout_marginTop="5px" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50px" android:layout_marginRight="30px"  android:layout_marginLeft="30px" android:id="@+id/SMS_SelectAvailableTemplate">
-						<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px" android:text="Chọn mẫu có sẵn" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-					</LinearLayout>
-					 <LinearLayout android:gravity="center" android:layout_marginTop="5px" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50px" android:layout_marginRight="30px"  android:layout_marginLeft="30px" android:id="@+id/SMS_SelectOnlineTemplate">
-						<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15px" android:text="Chọn mẫu trưc tuyến" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-					</LinearLayout>
-	  </LinearLayout>
-	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<FrameLayout  android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="30dip">
+	<ScrollView android:layout_marginBottom="75dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:layout_marginTop="10dip"  android:orientation="vertical"  android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		       		<LinearLayout android:gravity="center" android:layout_marginTop="5dip" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50dip" android:layout_marginRight="30dip"  android:layout_marginLeft="30dip" android:id="@+id/SMS_SelectAvailableTemplate">
+							<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15dip" android:text="Chọn mẫu có sẵn" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content"></TextView>
+						</LinearLayout>
+						 <LinearLayout android:gravity="center" android:layout_marginTop="5dip" android:background="@drawable/tap" android:layout_width="fill_parent" android:layout_height="50dip" android:layout_marginRight="30dip"  android:layout_marginLeft="30dip" android:id="@+id/SMS_SelectOnlineTemplate">
+							<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15dip" android:text="Chọn mẫu trưc tuyến" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content"></TextView>
+						</LinearLayout>
+		  </LinearLayout>
+	  </ScrollView>
+	<FrameLayout android:layout_marginTop="5dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	        
-	       <LinearLayout android:layout_marginBottom="5px" android:layout_marginTop="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	       			<FrameLayout android:layout_marginTop="4px" android:orientation="horizontal"  android:layout_width="fill_parent" android:layout_height="wrap_content">
-				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<EditText android:paddingLeft="10px" android:paddingTop="5px" android:paddingBottom="5px" android:paddingRight="5px"  android:hint="Nội dung tin nhắn" android:maxHeight="50px" android:singleLine="false" android:id="@+id/Send_TextContent" android:background="@drawable/edittextback" android:layout_marginLeft="5px" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="60px" ></EditText>
+	       <LinearLayout android:layout_marginBottom="5dip" android:layout_marginTop="5dip" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	       			<FrameLayout android:layout_marginTop="4dip" android:orientation="horizontal"  android:layout_width="fill_parent" android:layout_height="wrap_content">
+				  	 <LinearLayout android:gravity="left" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5dip" >
+						<EditText android:paddingLeft="10dip" android:paddingTop="5dip" android:paddingBottom="5dip" android:paddingRight="5dip"  android:hint="Nội dung tin nhắn" android:maxHeight="50dip" android:singleLine="false" android:id="@+id/Send_TextContent" android:background="@drawable/edittextback" android:layout_marginLeft="5dip" android:layout_width="fill_parent" android:layout_height="50dip" android:layout_marginRight="60dip" ></EditText>
 					</LinearLayout>
 					
-					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5px" >
-						<ImageView android:id="@+id/Send_btSend" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:src="@drawable/send"></ImageView>
+					<LinearLayout android:gravity="right|center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="5dip" >
+						
+						 <LinearLayout android:gravity="center" android:background="@drawable/tap" android:layout_width="50dip" android:layout_height="50dip" android:id="@+id/Send_btSend">
+							<TextView android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="15dip" android:text="Gui" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content"></TextView>
+						</LinearLayout>
 					</LinearLayout>
 		  	</FrameLayout>
 	       </LinearLayout>
 	       
    	</FrameLayout>
 
-
+</FrameLayout>
 </LinearLayout>

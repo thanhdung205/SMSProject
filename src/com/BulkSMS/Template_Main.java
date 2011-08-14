@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -25,7 +25,7 @@ public class Template_Main extends Activity {
 		
 		setContentView(R.layout.maintemplate);
 		
-		LinearLayout btCreate = (LinearLayout) findViewById(R.id.Template_btCreate);
+		final LinearLayout btCreate = (LinearLayout) findViewById(R.id.Template_btCreate);
 		final Database_Command db = new Database_Command(this);
 		 ListView ls = (ListView) findViewById(R.id.Template_ListTemplate);
 		 Binding(ls,db);
@@ -40,15 +40,17 @@ public class Template_Main extends Activity {
 		 btCreate.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btCreate);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN7"));
 				
 					
 			}	 
 		 });
-		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				finish();
 			} 
 		 });
@@ -89,7 +91,7 @@ public class Template_Main extends Activity {
 	}
 	public void Binding(ListView ls,Database_Command db)
 	{
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,GetTemplate(db));
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.customlistviewtemplate,R.id.Template_ListTem,GetTemplate(db));
 		 ls.setAdapter(adapter);
 	}
 	public void Detroy(){

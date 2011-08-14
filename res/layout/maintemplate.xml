@@ -5,20 +5,18 @@
   android:layout_height="fill_parent"
   android:background="@drawable/background"
   android:orientation="vertical">
-  <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
-		<TextView android:text="Mẫu tin nhắn" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+  <LinearLayout android:id="@+id/btExit" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50dip" android:background="@drawable/maintitle" >
+		<TextView android:text="Mẫu tin nhắn" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content" android:textSize="20dip"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
-	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Template_ListTemplate" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>
-	       <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<FrameLayout android:layout_marginTop="5dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	        <ListView  android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Template_ListTemplate" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70dip"></ListView>
+	       <LinearLayout android:layout_marginBottom="5dip" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
 	       		
-	       		 <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-				       <LinearLayout android:id="@+id/Template_btCreate"  android:layout_marginLeft="15px" android:gravity="center" android:layout_marginRight="15px" android:background="@drawable/tap"  android:layout_weight="50" android:layout_height="50px" android:layout_width="fill_parent">
-				       		<TextView android:text="Tạo mới" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView> 		
+	       		 <LinearLayout android:layout_marginBottom="5dip" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+				       <LinearLayout android:id="@+id/Template_btCreate"  android:layout_marginLeft="30dip" android:gravity="center" android:layout_marginRight="30dip" android:background="@drawable/tap"  android:layout_height="50dip" android:layout_width="fill_parent">
+				       		<TextView android:text="Tạo mới" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:gravity="center" android:layout_height="wrap_content" android:textSize="15dip"  android:textStyle="bold"></TextView> 		
 				       </LinearLayout>
-				       <LinearLayout android:id="@+id/Template_btUpdate" android:gravity="center" android:background="@drawable/tap" android:layout_marginLeft="15px" android:layout_marginRight="15px"  android:layout_weight="50" android:layout_width="fill_parent" android:layout_height="50px">
-				       		<TextView android:text="Cập nhật" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
-				       </LinearLayout>
+				     
 				       
 				       
 	       </LinearLayout>		

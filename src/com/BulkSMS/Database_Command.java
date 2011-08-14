@@ -42,6 +42,11 @@ public class Database_Command {
 		 args.put("Content", Content);
 		 vari.GetDatabase().GetDatabase().insert(vari.GetTableSaveID(), null, args);
 	}
+	public void Insert_tblSaveIDSend(int Str){
+		 ContentValues args = new ContentValues();
+		 args.put("ID", Str);
+		 vari.GetDatabase().GetDatabase().insert(vari.GetSaveID_Send(), null, args);
+	}
 	public void Insert_tblAuto(String Name,int  Row){
 		vari.GetDatabase().GetDatabase().execSQL("insert into " + vari.TableAuto + " values('" + Name +"','" + Row +"');");
 	}
@@ -112,6 +117,10 @@ public class Database_Command {
 		String[] args = {"" + Str + ""};
 		vari.GetDatabase().GetDatabase().delete(vari.GetTableSaveID(),"ID=?" ,args);
 	}
+	public void Delete_tblSaveIDSend(int ID){
+		String[] args = {"" + ID + ""};
+		vari.GetDatabase().GetDatabase().delete(vari.GetSaveID_Send(),"ID=?" ,args);
+	}
 	public void Update_tblAuto(String Name,int Row){
 		ContentValues args = new ContentValues();
 		 args.put("TableName", Name);
@@ -174,6 +183,11 @@ public class Database_Command {
 	public Cursor GetEntrySaveID()
 	{
 		return vari.GetDatabase().GetDatabase().query(vari.GetTableSaveID(), new String[] {"ID","Content"}, 
+                null, null, null, null, null);
+	}
+	public Cursor GetEntrySaveIDSend()
+	{
+		return vari.GetDatabase().GetDatabase().query(vari.GetSaveID_Send(), new String[] {"ID"}, 
                 null, null, null, null, null);
 	}
 	public Cursor GetEntryAutoSend()
@@ -255,7 +269,7 @@ public class Database_Command {
 		while (cs.isAfterLast() == false) {
 			StructGroup gr = new StructGroup();
 			gr.SetID(cs.getInt(0));
-			gr.SetGroupName(cs.getString(1));
+			gr.SetGroupName(cs.getString(1) + "(" +  GetListContact(cs.getInt(0)).size()  +")");
 			list.add(gr);
 			cs.moveToNext();
 		}
@@ -264,9 +278,7 @@ public class Database_Command {
 	}
 	public ArrayList<StructTemplate> GetListTemplate()
 	{
-		
 		Cursor cs = GetEntryTemplate();
-		
 		ArrayList<StructTemplate> list =new ArrayList<StructTemplate>();
 		cs.moveToFirst();
 		while (cs.isAfterLast() == false) {
@@ -293,6 +305,26 @@ public class Database_Command {
 			con.SetNumberPhone(cs.getString(3));
 			tp.SetConcact(con); 
 			list.add(tp);
+			 cs.moveToNext();
+		}
+		return list;
+	}
+	public ArrayList<StructContact_Group> GetListContact(int ID)
+	{
+		
+		Cursor cs = GetEntryContact();
+		ArrayList<StructContact_Group> list =new ArrayList<StructContact_Group>();
+		cs.moveToFirst();
+		while (cs.isAfterLast() == false) {
+			StructContact_Group tp = new StructContact_Group();
+			StructContact con = new StructContact();
+			if(Integer.parseInt(cs.getString(1)) == ID){
+				tp.SetIDGroup(Integer.parseInt(cs.getString(1)));
+				con.SetName(cs.getString(2));
+				con.SetNumberPhone(cs.getString(3));
+				tp.SetConcact(con); 
+				list.add(tp);
+			}
 			 cs.moveToNext();
 		}
 		
@@ -366,17 +398,29 @@ public class Database_Command {
 	}
 	public StructAutoSend GetSaveID(){
 		Cursor cs = GetEntrySaveID();
+		try{
 		cs.moveToFirst();
 		StructAutoSend auto = new StructAutoSend();
 		auto.SetID(cs.getInt(0));
 		auto.SetContent(cs.getString(1));
 		return auto;
+		}catch(Exception e)
+		{
+			
+		}
+		return null;
+		
+	}
+	public int GetSaveIDSend(){
+		Cursor cs = GetEntrySaveIDSend();
+		cs.moveToFirst();
+		return cs.getInt(0);
 	}
 	public void DeleteAllSaveID()
 	{
 		Cursor cs = GetEntrySaveID();
 		cs.moveToFirst();
-		if(!cs.isAfterLast())
+		while(!cs.isAfterLast())
 		{
 			Delete_tblSaveID(cs.getString(0));
 			cs.moveToNext();

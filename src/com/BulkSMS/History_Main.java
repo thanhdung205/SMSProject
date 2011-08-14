@@ -1,6 +1,5 @@
 package com.BulkSMS;
 
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,8 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -25,13 +23,9 @@ public class History_Main extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.historymain);
-	//	
-		
-		
 		listview = (ListView) findViewById(R.id.History_List);
 		BindingListView();
 		registerForContextMenu(listview);
-
 		listview.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -41,15 +35,18 @@ public class History_Main extends Activity{
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN9"));
 			}
 		  });
-		  LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		  final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 			 btExit.setOnClickListener(new OnClickListener(){
 				public void onClick(View arg0) {
+					ButtonAnimation.ChangingAnimaionBack(btExit);
 					finish();
 				}
 			 });
 	}
 	public void BindingListView(){
-		AdapterListViewHistory  ap = new AdapterListViewHistory(this,R.layout.customhistorylistview,GetHistory());
+		list = new ArrayListHistory(this);
+		list.SetListHistory();
+		AdapterListViewHistory  ap = new AdapterListViewHistory(this,R.layout.customhistorylistview,list.GetListGroup());
 		listview.setAdapter(ap);
 	}
 	@Override
@@ -80,26 +77,7 @@ public class History_Main extends Activity{
 	  }
 	  return true;
 	}
-	public ArrayList<StructHistory> GetHistory(){
-		list.SetListHistory();
-		ArrayList<StructHistory> listhis = new ArrayList<StructHistory>();
-		ArrayList<StructHistory> listh =list.GetListGroup();
-		for(int i = 0 ; i < listh.size(); i++ ){
-			StructHistory his = new StructHistory();
-			his.SetID(listh.get(i).GetID());
-			his.SetContent(listh.get(i).GetContent());
-			if(list.GetListGroup().get(i).GetContent().length() <= 15)
-			{
-				his.SetContent(listh.get(i).GetContent());
-			}
-			else{
-				his.SetContent(listh.get(i).GetContent().substring(0, 15) + "...");
-			}
-			his.SetDateTime(listh.get(i).GetDateTime());
-			listhis.add(his);
-		}
-		return listhis;
-	}
+	
 	
 
 }

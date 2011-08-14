@@ -15,7 +15,7 @@ public class Storing_Detail extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.storingdetail);
-		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 TextView txtContent = (TextView) findViewById(R.id.Storing_Content);
 		 if(All_Var.Text_Content!= null){
 			 txtContent.setText(All_Var.Text_Content);
@@ -25,19 +25,19 @@ public class Storing_Detail extends Activity{
 			 txtContent.setText(All_Var.ContentDetail.GetContent());
 			 All_Var.Detail_Content= All_Var.ContentDetail.GetContent();
 		 }
-		 All_Var.Text_Content = null;
-		 All_Var.ContentDetail = null;
-		 LinearLayout btSend = (LinearLayout) findViewById(R.id.Storing_btSend);
-		 LinearLayout btSendAuto = (LinearLayout) findViewById(R.id.Storing_btSendAuto);
+		
+		 final LinearLayout btSend = (LinearLayout) findViewById(R.id.Storing_btSend);
+		 final LinearLayout btSendAuto = (LinearLayout) findViewById(R.id.Storing_btSendAuto);
 		 btSend.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btSend);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN4"));
 				finish();
 			}
 		 });
 		 btSendAuto.setOnClickListener(new OnClickListener(){
-
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btSendAuto);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN11"));
 				finish();
 			}
@@ -45,6 +45,7 @@ public class Storing_Detail extends Activity{
 		 });
 		 btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				All_Var.Detail_Content=null;
 				finish();
 			}
@@ -57,6 +58,8 @@ public class Storing_Detail extends Activity{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		 All_Var.Text_Content = null;
+		 All_Var.ContentDetail = null;
 		All_Var.Detail_Content=null;
 	}
 }

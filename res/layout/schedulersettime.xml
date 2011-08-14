@@ -6,18 +6,23 @@
   android:background="@drawable/background"
   android:orientation="vertical">
   
-   <LinearLayout android:gravity="center" android:id="@+id/btExit" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
-		<TextView android:text="Đặt thời gian" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+   <LinearLayout android:gravity="center" android:id="@+id/btExit" android:layout_width="fill_parent" android:layout_height="50dip" android:background="@drawable/maintitle" >
+		<TextView android:text="Đặt thời gian" android:gravity="center" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
 	
-	
-   <LinearLayout android:layout_marginTop="20px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" >
-   		<TimePicker android:id="@+id/Scheduler_timePicker" android:layout_width="wrap_content" android:layout_height="wrap_content"></TimePicker>
+
+	   <LinearLayout android:layout_marginTop="20dip" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	   		<TimePicker android:id="@+id/Scheduler_timePicker" android:layout_width="wrap_content" android:layout_height="wrap_content"></TimePicker>
+	   </LinearLayout>
+	   <LinearLayout android:layout_marginTop="10dip" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" >
+	   <DatePicker android:id="@+id/Scheduler_datePicker" android:layout_width="wrap_content" android:layout_height="wrap_content"></DatePicker>
+	</LinearLayout>
+
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+<LinearLayout android:gravity="center|bottom" android:layout_width="fill_parent" android:layout_height="fill_parent">
+<LinearLayout android:layout_marginBottom="10dip"  android:background="@drawable/tap" android:layout_marginLeft="20dip" android:layout_marginRight="20dip" android:layout_marginTop="50dip" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50dip" android:id="@+id/Scheduler_Settime" >
+   		<TextView android:text="Thiết lập" android:textColor="#FFFFFF" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="15dip"  android:textStyle="bold"></TextView>
    </LinearLayout>
-   <LinearLayout android:layout_marginTop="10px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" >
-   <DatePicker android:id="@+id/Scheduler_datePicker" android:layout_width="wrap_content" android:layout_height="wrap_content"></DatePicker>
-</LinearLayout>
-<LinearLayout android:background="@drawable/tap" android:layout_marginLeft="20px" android:layout_marginRight="20px" android:layout_marginTop="50px" android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:id="@+id/Scheduler_Settime" >
-   		<TextView android:text="Thiết lập" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
    </LinearLayout>
+   </FrameLayout>
 </LinearLayout>

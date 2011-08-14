@@ -18,7 +18,6 @@ public class History_Detail extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.historydetail);
-		
 		TextView TextContent = (TextView) findViewById(R.id.History_Content);
 		ListView ls = (ListView) findViewById(R.id.History_ListContact);
 		int ID = All_Var.ID_History;
@@ -26,11 +25,10 @@ public class History_Detail extends Activity {
 		ArrayListHistoryDetail list = new ArrayListHistoryDetail(this);
 		AdapterListViewContactSub ap = new AdapterListViewContactSub(this,R.layout.customcontactlistviewsub,list.GetListFromID(ID));
 		ls.setAdapter(ap);
-		LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		btExit.setOnClickListener(new OnClickListener(){
-
 			public void onClick(View arg0) {
-				
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 			
 				finish();
 			}

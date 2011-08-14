@@ -6,30 +6,26 @@
   android:background="@drawable/background"
   android:orientation="vertical">
   
-  <LinearLayout android:id="@+id/btExit"  android:gravity="center" android:layout_width="fill_parent" android:layout_height="50px" android:background="@drawable/maintitle" >
-		<TextView android:text="Chèn số liên lạc" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20px"  android:textStyle="bold"></TextView> 
+  <LinearLayout android:id="@+id/btExit"  android:gravity="center" android:layout_width="fill_parent" android:layout_height="50dip" android:background="@drawable/maintitle" >
+		<TextView android:text="Chèn số liên lạc" android:gravity="center" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="20dip"  android:textStyle="bold"></TextView> 
 	</LinearLayout>
 		 <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" >
-			 <LinearLayout android:id="@+id/Send_tabContact" android:gravity="center" android:layout_height="50px" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
-				 <TextView android:text="Số liên lạc" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
+			 <LinearLayout android:id="@+id/Send_tabContact" android:gravity="center" android:layout_height="50dip" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
+				 <TextView android:text="Số liên lạc" android:gravity="center" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="15dip"  android:textStyle="bold"></TextView>
 			</LinearLayout>
-			 <LinearLayout android:id="@+id/Send_tabC" android:gravity="center" android:layout_height="50px" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
-				 <TextView android:text="Nhóm" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
+			 <LinearLayout android:id="@+id/Send_tabC" android:gravity="center" android:layout_height="50dip" android:background="@drawable/tap" android:layout_weight="50"  android:layout_width="fill_parent">
+				 <TextView android:text="Nhóm" android:gravity="center" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="15dip"  android:textStyle="bold"></TextView>
 			</LinearLayout>
 	</LinearLayout>
-		 <LinearLayout  android:layout_width="fill_parent" android:layout_height="wrap_content" >
-			  <EditText android:hint="Nhap vao ten tim kiem" android:paddingLeft="10px"  android:layout_marginLeft="8px" android:layout_marginRight="8px" android:text="" android:id="@+id/Contact_txtFind" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/edittextback"></EditText>
+		 <LinearLayout android:id="@+id/LYEditFind"  android:layout_width="fill_parent" android:layout_height="wrap_content" >
+			  <EditText android:hint="Nhap vao ten tim kiem" android:paddingLeft="10dip"  android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:text="" android:id="@+id/Contact_txtFind" android:layout_width="fill_parent" android:layout_height="50dip" android:background="@drawable/edittextback"></EditText>
 	</LinearLayout>
-	<FrameLayout android:layout_marginTop="5px" android:layout_width="fill_parent" android:layout_height="fill_parent">
-	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Send_GroupContact" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70px"></ListView>
-	       <LinearLayout android:layout_marginBottom="5px" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
-				       <LinearLayout android:id="@+id/Send_btOK"  android:layout_marginLeft="30px" android:gravity="center" android:layout_marginRight="30px" android:background="@drawable/tap"   android:layout_height="50px" android:layout_width="fill_parent">
-				       		<TextView android:text="Chap nhan" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="15px"  android:textStyle="bold"></TextView>
-				       		
+	<FrameLayout android:layout_marginTop="5dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+	        <ListView android:divider="@drawable/divider" android:cacheColorHint="#00000000" android:id="@+id/Send_GroupContact" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70dip"></ListView>
+	       <LinearLayout android:layout_marginBottom="5dip" android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent">
+				       <LinearLayout android:id="@+id/Send_btOK"  android:layout_marginLeft="30dip" android:gravity="center" android:layout_marginRight="30dip" android:background="@drawable/tap"   android:layout_height="50dip" android:layout_width="fill_parent">
+				       		<TextView android:text="Chap nhan" android:gravity="center" android:textColor="#FFFFFF" android:layout_width="fill_parent" android:layout_height="wrap_content" android:textSize="15dip"  android:textStyle="bold"></TextView>
 				       </LinearLayout>
-				   
-				       
-				       
 	       </LinearLayout>
 	       
    	</FrameLayout>

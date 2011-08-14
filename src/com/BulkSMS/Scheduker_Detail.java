@@ -22,9 +22,10 @@ public class Scheduker_Detail extends Activity {
 		TextContent.setText(All_Var.Content_AutoSend);
 		AdapterListViewContactSub ap = new AdapterListViewContactSub(this,R.layout.customcontactlistviewsub,GetCon(All_Var.ID_AutoSend));
 		ls.setAdapter(ap);
-		LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				finish();
 			}
 		 });

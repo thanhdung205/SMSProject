@@ -18,27 +18,35 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class Send_ContactGroup extends Activity {
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		SetContactCheckedNull thread = new SetContactCheckedNull();
+		thread.start();
+	}
 	int flag = 0 ;
 	ArrayList<StructListview_Group> listgroup;
-	ArrayList<Struct_ListViewContact> listcontact;
+	AdapterListviewContact ap=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.smscontactgroup);
 		
-		LinearLayout btContact = (LinearLayout) findViewById(R.id.Send_tabContact);
-		LinearLayout btGroup = (LinearLayout) findViewById(R.id.Send_tabC);
-		
-		LinearLayout btOK = (LinearLayout) findViewById(R.id.Send_btOK);
+		final LinearLayout btContact = (LinearLayout) findViewById(R.id.Send_tabContact);
+		final LinearLayout btGroup = (LinearLayout) findViewById(R.id.Send_tabC);		
+		final LinearLayout btOK = (LinearLayout) findViewById(R.id.Send_btOK);
 		final EditText txtFind = (EditText) findViewById(R.id.Contact_txtFind);
 
 		final ListView list = (ListView) findViewById(R.id.Send_GroupContact);
 		
-		listcontact = All_Var.listcontact.GetListContact();
+		try{
 		listgroup = GetStructListGroup();
-		final AdapterListviewContact ap = new AdapterListviewContact(this,R.layout.customcontactlistview, listcontact);
+		ap = new AdapterListviewContact(this,R.layout.customcontactlistview,All_Var.listcontact.GetListContact());
 		list.setAdapter(ap);
+		}catch(Exception e){
+			
+		}
 		final Context con =this;
 		txtFind.addTextChangedListener(new TextWatcher(){
 
@@ -51,8 +59,9 @@ public class Send_ContactGroup extends Activity {
 			}
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				if(txtFind.getText().toString() == "")
+				if(txtFind.getText().toString() == null)
 				{
+					
 					list.setAdapter(ap);
 				}
 				else
@@ -65,6 +74,7 @@ public class Send_ContactGroup extends Activity {
 	    final AdapterListviewGroup ap1 = new AdapterListviewGroup(this,R.layout.customgrouplistview,listgroup);
 		btContact.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btContact);
 				list.setAdapter(ap);
 				txtFind.setVisibility(View.VISIBLE);
 			    flag = 0;
@@ -74,14 +84,16 @@ public class Send_ContactGroup extends Activity {
 		btOK.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btOK);
 				All_Var.listnumber = new ArrayList<StructContact>();
 				GetNumber();
 				finish();
 		}});
 		btGroup.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(btGroup);
 				list.setAdapter(ap1);
-				txtFind.setVisibility(View.INVISIBLE);
+				txtFind.setVisibility(View.GONE);
 				flag = 1;
 			}
 		});
@@ -97,12 +109,12 @@ public class Send_ContactGroup extends Activity {
 	{
 		if(flag == 0)
 		{
-			for(int i = 0 ; i < listcontact.size(); i++){
-				if(listcontact.get(i).GetIsChecked())
+			for(int i = 0 ; i < All_Var.listcontact.GetListContact().size(); i++){
+				if(All_Var.listcontact.GetListContact().get(i).GetIsChecked())
 				{
 					StructContact con = new StructContact();
-					con.SetName(listcontact.get(i).GetContact().GetName());
-					con.SetNumberPhone(listcontact.get(i).GetContact().GetNumberPhone());
+					con.SetName(All_Var.listcontact.GetListContact().get(i).GetContact().GetName());
+					con.SetNumberPhone(All_Var.listcontact.GetListContact().get(i).GetContact().GetNumberPhone());
 					All_Var.listnumber.add(con);
 				}
 			}
@@ -118,33 +130,6 @@ public class Send_ContactGroup extends Activity {
 		}
 	}
 	
-	public ArrayListContact GetContact()
-	{
-		ContentResolver cr = getContentResolver();
-		Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
-		ArrayListContact contact = new ArrayListContact();
-		if (cur.getCount() > 0) {
-			          while (cur.moveToNext()) {
-			        	  StructContact con = new StructContact();
-			              String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-			               
-			              if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-			                   			
-			                    Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-			                                           ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
-			                                           new String[]{id}, null);
-			                    while (pCur.moveToNext()) {
-			                    	con.Name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-			                    	con.NumberPhone = pCur.getString(
-			                                 pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-			                    	contact.SetListContact(con);
-			                    }
-			                    pCur.close();
-			                }
-			          }
-	}
-	    return contact;
-	}
 	public ArrayList<StructListview_Group> GetStructListGroup()
 	{
 		ArrayList<StructListview_Group> structlistgroup = new ArrayList<StructListview_Group>();
@@ -174,10 +159,10 @@ public class Send_ContactGroup extends Activity {
 	public ArrayList<Struct_ListViewContact> FindContact(String Name)
 	{
 		ArrayList<Struct_ListViewContact> contact = new ArrayList<Struct_ListViewContact>();
-		for(int i=0; i < listcontact.size();i++)
+		for(int i=0; i < All_Var.listcontact.GetListContact().size();i++)
 		{
-			if(listcontact.get(i).GetContact().GetName().toUpperCase().contains(Name.toUpperCase())){
-				contact.add(listcontact.get(i));
+			if(All_Var.listcontact.GetListContact().get(i).GetContact().GetName().toUpperCase().contains(Name.toUpperCase())){
+				contact.add(All_Var.listcontact.GetListContact().get(i));
 			}
 		}
 		return contact;

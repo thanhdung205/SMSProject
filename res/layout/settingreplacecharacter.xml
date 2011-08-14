@@ -5,18 +5,18 @@
   android:layout_height="fill_parent"
    android:background="@drawable/background"
    android:orientation="vertical">
-    <LinearLayout  android:gravity="center" android:background="@drawable/maintitle" android:layout_width="fill_parent" android:layout_height="50px" android:id="@+id/btExit">
-        <TextView android:textStyle="bold" android:textSize="20px" android:textColor="#FFFFFF" android:text="Thay thế"  android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>    	
+    <LinearLayout  android:gravity="center" android:background="@drawable/maintitle" android:layout_width="fill_parent" android:layout_height="50dip" android:id="@+id/btExit">
+        <TextView android:textStyle="bold" android:textSize="20dip" android:gravity="center" android:textColor="#FFFFFF" android:text="Thay thế"  android:layout_width="fill_parent" android:layout_height="wrap_content"></TextView>    	
     </LinearLayout>
     <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
     <LinearLayout   android:layout_height="fill_parent" android:layout_width="fill_parent">
-    	<LinearLayout android:layout_marginLeft="10px" android:layout_marginRight="10px" android:layout_marginTop="10px" android:layout_height="wrap_content" android:layout_width="fill_parent">
-    		<EditText  android:layout_width="fill_parent" android:layout_height="50px" android:hint="Kí tự thay thế" android:paddingLeft="10px" android:paddingRight="10px" android:id="@+id/Setting_TxtRepalce" android:background="@drawable/edittextback"></EditText>
+    	<LinearLayout android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:layout_marginTop="10dip" android:layout_height="wrap_content" android:layout_width="fill_parent">
+    		<EditText  android:layout_width="fill_parent" android:layout_height="50dip" android:hint="Kí tự thay thế" android:paddingLeft="10dip" android:paddingRight="10dip" android:id="@+id/Setting_TxtRepalce" android:background="@drawable/edittextback"></EditText>
     	</LinearLayout>
     	</LinearLayout>
     	<LinearLayout  android:gravity="bottom" android:layout_height="fill_parent" android:layout_width="fill_parent">
-    	<LinearLayout android:id="@+id/Setting_btReplace" android:layout_marginBottom="10px"  android:gravity="center" android:background="@drawable/tap" android:layout_marginLeft="30px" android:layout_marginRight="30px" android:layout_height="wrap_content" android:layout_width="fill_parent">
-    		<TextView android:text="Thay thế" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="15px" android:textStyle="bold" ></TextView>
+    	<LinearLayout android:id="@+id/Setting_btReplace" android:layout_marginBottom="10dip"  android:gravity="center" android:background="@drawable/tap" android:layout_marginLeft="30dip" android:layout_marginRight="30dip" android:layout_height="50dip" android:layout_width="fill_parent">
+    		<TextView android:text="Thay thế" android:layout_width="fill_parent" android:gravity="center" android:layout_height="50dip" android:textColor="#FFFFFF" android:textSize="15dip" android:textStyle="bold" ></TextView>
     	</LinearLayout>
     	</LinearLayout>
     </FrameLayout>

@@ -7,8 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -26,9 +25,10 @@ public class Group_Detail extends Activity {
 	
 		BindingListView(com);
 		LinearLayout btAddContact = (LinearLayout) findViewById(R.id.Group_AddContact);
-	    LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+	    final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				SaveChange(com);
 				finish();
 			}
@@ -68,6 +68,7 @@ public class Group_Detail extends Activity {
 	
 			All_Var.listnumber =null;
 		}
+		
 		BindingListView(com);
 	}
 	public boolean Checking(String NumberPhone)

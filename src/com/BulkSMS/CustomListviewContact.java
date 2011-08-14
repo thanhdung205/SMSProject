@@ -3,7 +3,7 @@ package com.BulkSMS;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

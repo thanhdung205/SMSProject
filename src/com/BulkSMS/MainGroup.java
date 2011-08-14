@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
 public class MainGroup extends Activity {
 	ArrayListGroup listgroup = new ArrayListGroup(this);
 	ListView ls;
@@ -36,15 +35,17 @@ public class MainGroup extends Activity {
 		 ls = (ListView) findViewById(R.id.Grouplist);
 		 Binding(ls);
 		 registerForContextMenu(ls);
-		 LinearLayout bt = (LinearLayout) findViewById(R.id.bt_Creategroup);
-		 LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
+		 final LinearLayout bt = (LinearLayout) findViewById(R.id.bt_Creategroup);
+		 final LinearLayout btExit = (LinearLayout) findViewById(R.id.btExit);
 		 btExit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaionBack(btExit);
 				finish();
 			}
 		 });
 		 bt.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				ButtonAnimation.ChangingAnimaion(bt);
 				startActivity(new Intent("com.BulkSMS.CLEARSCREEN2"));
 			}
 		 });

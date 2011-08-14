@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -29,7 +29,7 @@ public class Storing_Template extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.storingtemplate);
-		final Context Con = this;
+
 		ls = (ListView) findViewById(R.id.Storing_TemplateList); 
 		con = new ConnectService(this);
 		listtem = new ArrayList<StructTemplate>();
